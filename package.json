@@ -1,0 +1,32 @@
+{
+  "name": "eos-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The E-OS website: static output, Polish and English, no backend.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check:changelog": "node scripts/check-changelog.mjs",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "check:built": "node scripts/check-built.mjs",
+    "check:ci": "node scripts/check-ci.mjs",
+    "check:products": "node scripts/gen-products.mjs --check",
+    "gen:products": "node scripts/gen-products.mjs",
+    "sync:changelog": "node scripts/sync-changelog.mjs",
+    "negative-tests": "bash scripts/negative-tests.sh",
+    "verify": "npm run check:i18n && npm run check:changelog && npm run check:contrast && npm run check:ci && npm run build && npm run check:built"
+  },
+  "dependencies": {
+    "astro": "^7.2.10"
+  },
+  "devDependencies": {
+    "yaml": "^2.9.0"
+  }
+}

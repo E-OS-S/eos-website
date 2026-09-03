@@ -1,0 +1,84 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import { useTranslations, useList, LOCALES, localePath, type Locale } from '../../../i18n';
+import { downloads, links } from '../../../../site.config.mjs';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const list = useList(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+
+// The gate is the absence of the links, not a hidden div. When
+// downloads.developerOnly is true nothing below renders a URL to an artefact.
+const gated = downloads.developerOnly;
+const artefacts = gated ? [] : downloads.artefacts;
+---
+<Base lang={lang} route="downloads">
+  <PageHead eyebrow={t('page.downloads.eyebrow')} title={t('page.downloads.title')} lede={t('downloads.lede')} />
+
+  <div class="callout">
+    <h3>{t('downloads.gate.h3')}</h3>
+    <p>{t('downloads.gate.p1')}</p>
+    <p>{t('downloads.gate.p2')}</p>
+    <p class="meta">{t('downloads.gate.flag', { flag: 'downloads.developerOnly', value: String(gated) })}</p>
+  </div>
+
+  {gated ? (
+    <section aria-labelledby="closed">
+      <h2 id="closed">{t('downloads.closed.h2')}</h2>
+      <p>{t('downloads.closed.body')}</p>
+      <ul>
+        {list('downloads.closed.reasons').map((reason) => <li>{reason}</li>)}
+      </ul>
+      <h3>{t('downloads.closed.buildInstead')}</h3>
+      <p>{t('downloads.closed.buildBody')}</p>
+      <pre><code data-i18n-literal>git clone https://gitlab.com/e-os/e-os.git
+cd e-os
+bash scripts/eos-build.sh x86_64</code></pre>
+      <p><a href={href('developers')}>{t('downloads.closed.developersLink')}</a></p>
+    </section>
+  ) : (
+    <section aria-labelledby="open">
+      <h2 id="open">{t('downloads.open.h2')}</h2>
+      <ul class="list-plain">
+        {artefacts.map((a: { name: string; url: string; sha256: string; signature: string }) => (
+          <li>
+            <a href={a.url} rel="noopener noreferrer" data-i18n-literal>{a.name}</a>
+            <span class="meta" data-i18n-literal> sha256 {a.sha256}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section aria-labelledby="whatexists">
+    <h2 id="whatexists">{t('downloads.existing.h2')}</h2>
+    <p>{t('downloads.existing.intro')}</p>
+    <ul>
+      {list('downloads.existing.items').map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="verify">
+    <h2 id="verify">{t('downloads.verify.h2')}</h2>
+    <p>{t('downloads.verify.intro')}</p>
+    <ol>
+      {list('downloads.verify.steps').map((step) => <li>{step}</li>)}
+    </ol>
+    <p>
+      <a href={links.security} rel="noopener noreferrer">{t('downloads.verify.securityLink')}</a>
+    </p>
+  </section>
+
+  <section aria-labelledby="hardware">
+    <h2 id="hardware">{t('downloads.hardware.h2')}</h2>
+    <p>{t('downloads.hardware.body')}</p>
+    <p><a href={links.hardware} rel="noopener noreferrer">{t('downloads.hardware.link')}</a></p>
+  </section>
+</Base>

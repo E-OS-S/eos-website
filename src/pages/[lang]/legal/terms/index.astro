@@ -1,0 +1,27 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import PageHead from '../../../../components/PageHead.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+import { useTranslations, LOCALES, type Locale } from '../../../../i18n';
+import { links } from '../../../../../site.config.mjs';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+---
+<Base lang={lang} route="legalTerms">
+  <PageHead
+    eyebrow={t('page.legalTerms.eyebrow')}
+    title={t('page.legalTerms.title')}
+    lede={t('legal.terms.lede')}
+  />
+  <LegalDoc lang={lang} docKey="terms" reviewed="2026-09-03" />
+  <p>
+    <a href={links.license} rel="noopener noreferrer">{t('legal.terms.licenseLink')}</a>
+    <span aria-hidden="true"> · </span>
+    <a href={links.notice} rel="noopener noreferrer">{t('legal.terms.noticeLink')}</a>
+  </p>
+</Base>

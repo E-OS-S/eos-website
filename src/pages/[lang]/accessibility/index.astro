@@ -1,0 +1,91 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import { useTranslations, useList, useEntries, LOCALES, localePath, type Locale } from '../../../i18n';
+import contrast from '../../../../a11y.contrast.json';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const list = useList(lang);
+const entries = useEntries(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+
+// The minimums quoted on this page come from the file the gate reads, so the
+// statement cannot claim a ratio the build does not enforce.
+const bodyMin = contrast.pairs.find((p) => p.fg === 'text' && p.bg === 'ink')?.min;
+const linkMin = contrast.pairs.find((p) => p.fg === 'accent-text' && p.bg === 'ink')?.min;
+const mutedMin = contrast.pairs.find((p) => p.fg === 'muted' && p.bg === 'ink')?.min;
+---
+<Base lang={lang} route="accessibility">
+  <PageHead eyebrow={t('page.accessibility.eyebrow')} title={t('page.accessibility.title')} lede={t('a11y.lede')} />
+
+  <section aria-labelledby="claims">
+    <h2 id="claims">{t('a11y.claims.h2')}</h2>
+    <p>{t('a11y.claims.intro')}</p>
+    <div class="table-scroll">
+      <table>
+        <caption>{t('a11y.claims.caption')}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{t('a11y.claims.col.claim')}</th>
+            <th scope="col">{t('a11y.claims.col.how')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries('a11y.claims.rows').map((row) => (
+            <tr>
+              <th scope="row">{row.claim}</th>
+              <td>{row.how}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="contrast">
+    <h2 id="contrast">{t('a11y.contrast.h2')}</h2>
+    <p>{t('a11y.contrast.body', { body: String(bodyMin), link: String(linkMin), muted: String(mutedMin) })}</p>
+    <p>{t('a11y.contrast.gate')}</p>
+    <pre><code data-i18n-literal>npm run check:contrast</code></pre>
+  </section>
+
+  <section aria-labelledby="keyboard">
+    <h2 id="keyboard">{t('a11y.keyboard.h2')}</h2>
+    <ul>
+      {list('a11y.keyboard.items').map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="motion">
+    <h2 id="motion">{t('a11y.motion.h2')}</h2>
+    <p>{t('a11y.motion.body')}</p>
+  </section>
+
+  <section aria-labelledby="landmarks">
+    <h2 id="landmarks">{t('a11y.landmarks.h2')}</h2>
+    <p>{t('a11y.landmarks.intro')}</p>
+    <ul>
+      {list('a11y.landmarks.items').map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="unverified">
+    <h2 id="unverified">{t('a11y.unverified.h2')}</h2>
+    <p>{t('a11y.unverified.intro')}</p>
+    <ul>
+      {list('a11y.unverified.items').map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="a11yfeedback">
+    <h2 id="a11yfeedback">{t('a11y.feedback.h2')}</h2>
+    <p>{t('a11y.feedback.body')}</p>
+    <p><a href={href('support')}>{t('a11y.feedback.link')}</a></p>
+  </section>
+</Base>

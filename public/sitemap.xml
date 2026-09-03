@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/products/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/products/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/products/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/products/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/products/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/products/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/downloads/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/downloads/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/downloads/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/downloads/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/downloads/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/downloads/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/developers/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/developers/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/developers/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/developers/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/developers/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/developers/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/changelog/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/changelog/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/changelog/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/changelog/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/changelog/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/changelog/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/support/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/support/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/support/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/support/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/support/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/support/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/privacy-and-security/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/privacy-and-security/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/privacy-and-security/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/privacy-and-security/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/privacy-and-security/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/privacy-and-security/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/about/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/about/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/about/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/about/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/about/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/accessibility/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/accessibility/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/accessibility/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/accessibility/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/legal/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/privacy/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/legal/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/privacy/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/legal/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/terms/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/legal/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/terms/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/legal/trademarks/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/trademarks/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/trademarks/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/legal/trademarks/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/trademarks/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/trademarks/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/pl/legal/about-eos/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/about-eos/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/about-eos/"/>
+  </url>
+  <url>
+    <loc>https://e-os.gitlab.io/eos-website/en/legal/about-eos/</loc>
+    <xhtml:link rel="alternate" hreflang="pl-PL" href="https://e-os.gitlab.io/eos-website/pl/legal/about-eos/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://e-os.gitlab.io/eos-website/en/legal/about-eos/"/>
+  </url>
+</urlset>

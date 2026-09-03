@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { useTranslations, useList, useEntries, LOCALES, localePath, type Locale } from '../../i18n';
+import { links } from '../../../site.config.mjs';
+import products from '../../data/products.json';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const list = useList(lang);
+const entries = useEntries(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+
+const shipped = products.products.filter((p) => p.status === 'shipped').length;
+const planned = products.products.filter((p) => p.status === 'planned').length;
+---
+<Base lang={lang} route="home">
+  <PageHead eyebrow={t('page.home.eyebrow')} title={t('home.h1')} />
+
+  <p class="lede">{t('home.paragraph')}</p>
+
+  <p>
+    <a class="button" href={href('products')}>{t('home.cta.products')}</a>
+    <a class="button button-quiet" href={href('downloads')}>{t('home.cta.downloads')}</a>
+    <a class="button button-quiet" href={href('developers')}>{t('home.cta.developers')}</a>
+  </p>
+
+  <section aria-labelledby="verified">
+    <h2 id="verified">{t('home.verified.h2')}</h2>
+    <p>{t('home.verified.intro')}</p>
+    <div class="table-scroll">
+      <table>
+        <caption>{t('home.verified.caption')}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{t('home.verified.col.what')}</th>
+            <th scope="col">{t('home.verified.col.measured')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries('home.verified.rows').map((row) => (
+            <tr>
+              <th scope="row">{row.what}</th>
+              <td>{row.measured}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="limits">
+    <h2 id="limits">{t('home.limits.h2')}</h2>
+    <p>{t('home.limits.intro')}</p>
+    <ul>
+      {list('home.limits.items').map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="counts">
+    <h2 id="counts">{t('home.counts.h2')}</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>{t('home.counts.products.h3')}</h3>
+        <p>{t('home.counts.products.body', { shipped, planned })}</p>
+        <p><a href={href('products')}>{t('home.counts.products.link')}</a></p>
+      </div>
+      <div class="card">
+        <h3>{t('home.counts.repos.h3')}</h3>
+        <p>{t('home.counts.repos.body')}</p>
+        <p><a href={links.gitlabGroup} rel="noopener noreferrer">{t('home.counts.repos.link')}</a></p>
+      </div>
+      <div class="card">
+        <h3>{t('home.counts.changelog.h3')}</h3>
+        <p>{t('home.counts.changelog.body')}</p>
+        <p><a href={href('changelog')}>{t('home.counts.changelog.link')}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="upstream">
+    <h2 id="upstream">{t('home.upstream.h2')}</h2>
+    <p>{t('home.upstream.body')}</p>
+    <p>
+      <a href={links.redox} rel="noopener noreferrer">{t('home.upstream.link')}</a>
+      <span aria-hidden="true"> · </span>
+      <a href={href('legal/trademarks')}>{t('home.upstream.trademarkLink')}</a>
+    </p>
+  </section>
+</Base>

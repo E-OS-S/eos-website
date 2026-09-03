@@ -1,0 +1,71 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import { useTranslations, LOCALES, type Locale } from '../../../i18n';
+import { links } from '../../../../site.config.mjs';
+import { loadChangelog, renderInline } from '../../../lib/changelog.mjs';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+
+// Parsed at build time from the E-OS CHANGELOG.md. The build fails when no
+// source can be found -- see src/lib/changelog.mjs.
+const { source, releases, counts } = loadChangelog();
+---
+<Base lang={lang} route="changelog">
+  <PageHead eyebrow={t('page.changelog.eyebrow')} title={t('page.changelog.title')} lede={t('changelog.lede')} />
+
+  <div class="callout">
+    <h3>{t('changelog.language.h3')}</h3>
+    <p>{t('changelog.language.body')}</p>
+  </div>
+
+  <p class="provenance">
+    {t('changelog.provenance', {
+      origin: source.origin,
+      bytes: source.bytes,
+      sha: source.sha256.slice(0, 16),
+      crlf: String(source.crlf),
+      releases: counts.releases,
+      sections: counts.sections,
+      entries: counts.items,
+    })}
+  </p>
+
+  <p><a href={links.changelog} rel="noopener noreferrer">{t('changelog.sourceLink')}</a></p>
+
+  {releases.map((release, index) => (
+    <section aria-labelledby={`rel-${release.id}`}>
+      <h2 id={`rel-${release.id}`}>
+        <span data-i18n-literal>{release.version}</span>
+        {release.date && <span class="badge" data-i18n-literal>{release.date}</span>}
+        {release.unreleased && <span class="badge badge-planned">{t('changelog.unreleased')}</span>}
+      </h2>
+
+      {release.notes.map((note) => <p set:html={renderInline(note)} />)}
+
+      {release.items.length > 0 && (
+        <ul>
+          {release.items.map((item) => <li class="changelog-entry" set:html={renderInline(item)} />)}
+        </ul>
+      )}
+
+      {release.sections.map((section) => (
+        <details open={index === 0}>
+          <summary>
+            <span data-i18n-literal>{section.title}</span>
+            <span class="badge" data-i18n-literal>{section.items.length}</span>
+          </summary>
+          {section.notes.map((note) => <p set:html={renderInline(note)} />)}
+          <ul>
+            {section.items.map((item) => <li class="changelog-entry" set:html={renderInline(item)} />)}
+          </ul>
+        </details>
+      ))}
+    </section>
+  ))}
+</Base>

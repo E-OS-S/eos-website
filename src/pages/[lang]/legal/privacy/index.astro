@@ -1,0 +1,28 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import PageHead from '../../../../components/PageHead.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+import { useTranslations, LOCALES, localePath, type Locale } from '../../../../i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+---
+<Base lang={lang} route="legalPrivacy">
+  <PageHead
+    eyebrow={t('page.legalPrivacy.eyebrow')}
+    title={t('page.legalPrivacy.title')}
+    lede={t('legal.privacy.lede')}
+  />
+  <LegalDoc lang={lang} docKey="privacy" reviewed="2026-09-03" />
+  <p>
+    <a href={href('privacy-and-security')}>{t('legal.privacy.securityLink')}</a>
+    <span aria-hidden="true"> · </span>
+    <a href={href('support')}>{t('legal.privacy.supportLink')}</a>
+  </p>
+</Base>

@@ -1,0 +1,83 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import { useTranslations, useList, useEntries, LOCALES, localePath, type Locale } from '../../../i18n';
+import { links } from '../../../../site.config.mjs';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const list = useList(lang);
+const entries = useEntries(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+---
+<Base lang={lang} route="about">
+  <PageHead eyebrow={t('page.about.eyebrow')} title={t('page.about.title')} lede={t('about.lede')} />
+
+  <section aria-labelledby="what">
+    <h2 id="what">{t('about.what.h2')}</h2>
+    <p>{t('about.what.p1')}</p>
+    <p>{t('about.what.p2')}</p>
+  </section>
+
+  <section aria-labelledby="repos">
+    <h2 id="repos">{t('about.repos.h2')}</h2>
+    <p>{t('about.repos.intro')}</p>
+    <div class="table-scroll">
+      <table>
+        <caption>{t('about.repos.caption')}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{t('about.repos.col.type')}</th>
+            <th scope="col">{t('about.repos.col.meaning')}</th>
+            <th scope="col">{t('about.repos.col.count')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries('about.repos.rows').map((row) => (
+            <tr>
+              <th scope="row" data-i18n-literal>{row.type}</th>
+              <td>{row.meaning}</td>
+              <td data-i18n-literal>{row.count}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="who">
+    <h2 id="who">{t('about.who.h2')}</h2>
+    <p>{t('about.who.p1')}</p>
+    <p>{t('about.who.p2')}</p>
+  </section>
+
+  <section aria-labelledby="method">
+    <h2 id="method">{t('about.method.h2')}</h2>
+    <p>{t('about.method.intro')}</p>
+    <ul>
+      {list('about.method.rules').map((rule) => <li>{rule}</li>)}
+    </ul>
+    <p>
+      <a href={links.claudeMd} rel="noopener noreferrer">{t('about.method.link')}</a>
+    </p>
+  </section>
+
+  <section aria-labelledby="notclaims">
+    <h2 id="notclaims">{t('about.notclaims.h2')}</h2>
+    <p>{t('about.notclaims.intro')}</p>
+    <ul>
+      {list('about.notclaims.items').map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <p>
+    <a href={href('legal/about-eos')}>{t('about.legalLink')}</a>
+    <span aria-hidden="true"> · </span>
+    <a href={href('developers')}>{t('about.developersLink')}</a>
+  </p>
+</Base>

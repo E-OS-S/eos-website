@@ -1,0 +1,86 @@
+/*
+ * E-OS Crimson -- design tokens.
+ *
+ * The palette is the one the E-OS desktop already uses, taken from
+ * eos-notes/ui/notes.slint (deep black #0c0202, panel #160404, blood red
+ * #e50914, highlight #7a0a0a, text #f2e9e9, muted #8a6f6f) and adjusted only
+ * where a measured contrast ratio required it -- #8a6f6f as body text on
+ * #0c0202 is 4.0:1, below the 4.5:1 this site claims, so the muted token here
+ * is lighter. scripts/check-contrast.mjs measures every pair on every build.
+ *
+ * #e50914 is 4.27:1 on #0c0202. It is therefore used for rules, borders, focus
+ * and large display type -- never for body-size text. --accent-text exists for
+ * that and measures 7.4:1.
+ *
+ * The light block is written out twice on purpose: once for the explicit
+ * toggle, once for the system preference. check-contrast.mjs fails if the two
+ * copies ever diverge.
+ */
+
+/* @theme dark */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --ink: #0c0202;
+  --panel: #160404;
+  --panel-raised: #1e0707;
+  --line: #4a1a1a;
+  --line-soft: #2c0e0e;
+  --text: #f2e9e9;
+  --muted: #b79a9a;
+  --accent: #e50914;
+  --accent-text: #ff6b70;
+  --accent-deep: #7a0a0a;
+  --focus: #ffd7d9;
+  --shadow: 0 1px 0 rgb(255 255 255 / 4%);
+}
+
+/* @theme light */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --ink: #fbf7f7;
+  --panel: #ffffff;
+  --panel-raised: #f3ecec;
+  --line: #e0cfcf;
+  --line-soft: #efe4e4;
+  --text: #1a0d0d;
+  --muted: #5c4444;
+  --accent: #a3060f;
+  --accent-text: #8f0510;
+  --accent-deep: #7a0a0a;
+  --focus: #7a0a0a;
+  --shadow: 0 1px 2px rgb(26 13 13 / 8%);
+}
+
+@media (prefers-color-scheme: light) {
+  /* @theme light-auto */
+  :root:not([data-theme='dark']) {
+    color-scheme: light;
+
+    --ink: #fbf7f7;
+    --panel: #ffffff;
+    --panel-raised: #f3ecec;
+    --line: #e0cfcf;
+    --line-soft: #efe4e4;
+    --text: #1a0d0d;
+    --muted: #5c4444;
+    --accent: #a3060f;
+    --accent-text: #8f0510;
+    --accent-deep: #7a0a0a;
+    --focus: #7a0a0a;
+    --shadow: 0 1px 2px rgb(26 13 13 / 8%);
+  }
+}
+
+:root {
+  --font-sans: 'Inter var', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+
+  --measure: 68ch;
+  --page: 78rem;
+  --gap: 1.25rem;
+  --radius: 2px;
+  --rule: 1px;
+}

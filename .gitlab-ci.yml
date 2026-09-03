@@ -1,0 +1,138 @@
+# eos-website -- CI.
+#
+# Runner tag: eos-heavy, on every job, deliberately.
+#
+#   GitLab shared runners are quota-limited for this account and run out
+#   intermittently (measured: out from 2026-08-28, back on 2026-09-01, out again
+#   the same evening). GitHub Actions has never produced a run for this
+#   organisation. The self-hosted eos-heavy runner spends no shared minutes,
+#   which makes it the only executor known in advance to run.
+#
+# Everything here can fail. `|| true` appears nowhere: a gate that cannot go red
+# is decoration, not a gate (E-OS CLAUDE.md 13).
+#
+# Exit codes follow the project convention: 1 means a gate found a defect,
+# 2 means a gate could not run. Both fail the job; the log says which.
+
+stages:
+  - check
+  - build
+  - deploy
+
+default:
+  tags: [eos-heavy]
+  image: node:26-bookworm
+  interruptible: true
+
+variables:
+  # The website build reads CHANGELOG.md. On a runner there is no E-OS working
+  # tree, so the vendored copy in vendor/ is the source, and check-changelog
+  # refuses to pass if that copy is stale relative to a reachable tree.
+  npm_config_fund: "false"
+  npm_config_audit: "false"
+
+.node_setup: &node_setup
+  before_script:
+    - node --version
+    - npm --version
+    - npm ci --no-audit --no-fund
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - .npm/
+
+i18n:
+  stage: check
+  <<: *node_setup
+  script:
+    # Fails on a missing key in any catalogue and on a bare string literal in a
+    # text position. Negative test lives in scripts/negative-tests.sh.
+    - npm run check:i18n
+
+changelog:
+  stage: check
+  <<: *node_setup
+  script:
+    # Parser fixtures (positive and negative), source invariants, and the drift
+    # check between vendor/CHANGELOG.md and a reachable E-OS tree.
+    - npm run check:changelog
+
+contrast:
+  stage: check
+  <<: *node_setup
+  script:
+    # Measures every colour pair the accessibility statement claims.
+    - npm run check:contrast
+
+pipeline:
+  stage: check
+  <<: *node_setup
+  script:
+    # The pipeline definition is an artefact with invariants of its own: every
+    # job on eos-heavy, no swallowed failure, and a pages job that publishes
+    # public/ and then checks what it published. A pipeline that lost its
+    # runner tag would not go red -- it would go nowhere, which is worse.
+    - npm run check:ci
+
+gates-negative:
+  stage: check
+  <<: *node_setup
+  variables:
+    # 2 of the suite's 27 cases (products/stale, products/portable) read the
+    # E-OS orchestration repository, which is not checked out on this runner.
+    # Without this the suite exits 2 -- deliberately: it refuses to let a
+    # verdict of "every gate proved red" cover cases that never ran. The escape
+    # is here, in the diff, naming exactly what is not measured on CI, instead
+    # of being a silent skip inside the script.
+    EOS_ALLOW_SKIPPED_CASES: "1"
+  script:
+    # Proves the gates above can go red. Runs each of them against a
+    # deliberately broken copy of the tree -- and, once a build exists, against
+    # a deliberately broken copy of the OUTPUT -- and fails if any of them
+    # passes. `npm run build` comes first so the five built/* cases have an
+    # artefact to mutate; if it ever stopped producing one, the suite would
+    # exit 2 rather than silently shrink to 22 green cases.
+    - npm run build
+    - bash scripts/negative-tests.sh
+
+# Deliberately not a job: `npm run check:products`. It compares
+# src/data/products.json against config/*/eos.toml and repos.toml in the E-OS
+# orchestration repository, which is not checked out on this runner, so here it
+# could only ever exit 2 (instrument). It runs on the machine that has both
+# trees, before the commit that changes the data.
+
+pages:
+  stage: deploy
+  # Repeated from `default` on purpose: this is the job the owner's decision of
+  # 2026-09-03 names, and a reader (or a grep) should not have to infer the
+  # runner it lands on from a default twenty lines above.
+  tags: [eos-heavy]
+  <<: *node_setup
+  script:
+    - npm run check:i18n
+    - npm run check:changelog
+    - npm run check:contrast
+    - npm run build
+    # Astro writes straight into public/ (astro.config.mjs). These four lines
+    # are the artefact check: a build that "succeeded" and produced nothing is
+    # exactly the failure mode this project keeps meeting. check:built reads the
+    # HTML itself -- the download gate, the landmarks, the internal links and
+    # the locale coverage -- rather than trusting the build's exit code.
+    - test -f public/index.html
+    - test -d public/pl
+    - test -d public/en
+    - npm run check:built
+  after_script:
+    - 'echo "published pages: $(find public -name ''*.html'' | wc -l)"'
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  environment:
+    name: pages
+    url: $CI_PAGES_URL

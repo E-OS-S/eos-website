@@ -1,0 +1,35 @@
+---
+/**
+ * A legal document rendered from the catalogues.
+ *
+ * Every legal page carries the same header the E-OS documentation set uses:
+ * status, review date, owner. A legal page without a review date is a legal
+ * page nobody can tell is stale.
+ *
+ * Sections come from legal.<docKey>.sections -- an array of { h, body } rows.
+ * Because the array is a catalogue key, a section that exists in one language
+ * and not the other is a check-i18n finding, not a shorter page.
+ */
+import { useTranslations, useEntries, type Locale } from '../i18n';
+
+interface Props { lang: Locale; docKey: string; reviewed: string }
+const { lang, docKey, reviewed } = Astro.props;
+const t = useTranslations(lang);
+const entries = useEntries(lang);
+
+// i18n-dynamic: legal.privacy.sections
+// i18n-dynamic: legal.terms.sections
+// i18n-dynamic: legal.trademarks.sections
+// i18n-dynamic: legal.aboutEos.sections
+const sections = entries(`legal.${docKey}.sections`);
+---
+<p class="provenance">
+  {t('legal.header', { reviewed, owner: 'Gh0s777tt', status: t('legal.status') })}
+</p>
+
+{sections.map((section, index) => (
+  <section aria-labelledby={`${docKey}-${index}`}>
+    <h2 id={`${docKey}-${index}`}>{section.h}</h2>
+    <p>{section.body}</p>
+  </section>
+))}

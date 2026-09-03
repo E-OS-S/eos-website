@@ -1,0 +1,50 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import PageHead from '../../../../components/PageHead.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+import { useTranslations, useEntries, LOCALES, localePath, type Locale } from '../../../../i18n';
+import { links } from '../../../../../site.config.mjs';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const entries = useEntries(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+---
+<Base lang={lang} route="legalAboutEos">
+  <PageHead
+    eyebrow={t('page.legalAboutEos.eyebrow')}
+    title={t('page.legalAboutEos.title')}
+    lede={t('legal.aboutEos.lede')}
+  />
+  <LegalDoc lang={lang} docKey="aboutEos" reviewed="2026-09-03" />
+
+  <section aria-labelledby="identity">
+    <h2 id="identity">{t('legal.aboutEos.identity.h2')}</h2>
+    <div class="table-scroll">
+      <table>
+        <caption>{t('legal.aboutEos.identity.caption')}</caption>
+        <tbody>
+          {entries('legal.aboutEos.identity.rows').map((row) => (
+            <tr>
+              <th scope="row">{row.field}</th>
+              <td>{row.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <p>
+    <a href={links.license} rel="noopener noreferrer">{t('legal.aboutEos.licenseLink')}</a>
+    <span aria-hidden="true"> · </span>
+    <a href={href('legal/trademarks')}>{t('legal.aboutEos.trademarkLink')}</a>
+    <span aria-hidden="true"> · </span>
+    <a href={href('about')}>{t('legal.aboutEos.aboutLink')}</a>
+  </p>
+</Base>

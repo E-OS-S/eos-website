@@ -1,0 +1,155 @@
+---
+/**
+ * Ticket composer.
+ *
+ * There is no backend. GitLab Pages serves files; it runs nothing. A ticket is
+ * therefore an issue in the GitLab project named in site.config.mjs, and this
+ * form only assembles the prefilled "new issue" URL that GitLab itself
+ * understands:
+ *
+ *   /-/issues/new?issuable_template=<t>&issue[title]=<t>&issue[description]=<d>
+ *
+ * Nothing is sent from this page. The link opens GitLab, where the person
+ * reads what was composed and presses GitLab's own button. Without JavaScript
+ * the per-category links below still work; they carry the template only.
+ */
+import { useTranslations, useEntries, type Locale } from '../i18n';
+import { support } from '../../site.config.mjs';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const entries = useEntries(lang);
+
+const categories = entries('support.ticket.categories');
+
+const known = new Set(support.templates);
+for (const c of categories) {
+  if (!known.has(c.template)) {
+    throw new Error(
+      `TicketForm: category "${c.id}" names template "${c.template}", which is not in support.templates ` +
+        `(${support.templates.join(', ')}). Add the template to the GitLab project and to site.config.mjs.`,
+    );
+  }
+}
+
+const staticLink = (template: string) =>
+  `${support.issuesNewUrl}?issuable_template=${encodeURIComponent(template)}`;
+
+const ticketConfig = {
+  newUrl: support.issuesNewUrl,
+  labels: {
+    what: t('support.ticket.field.what'),
+    expected: t('support.ticket.field.expected'),
+    environment: t('support.ticket.field.environment'),
+    version: t('support.ticket.field.version'),
+  },
+  strings: {
+    ready: t('support.ticket.ready'),
+    tooLong: t('support.ticket.tooLong'),
+    needTitle: t('support.ticket.needTitle'),
+  },
+  limit: 7000,
+};
+---
+<form class="ticket" novalidate>
+  <p class="meta">{t('support.ticket.noBackend')}</p>
+
+  <div>
+    <label for="ticket-category">{t('support.ticket.field.category')}</label>
+    <select id="ticket-category" name="category">
+      {categories.map((c) => (
+        <option value={c.template} data-i18n-literal>{c.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label for="ticket-title">{t('support.ticket.field.title')}</label>
+    <input id="ticket-title" name="title" type="text" maxlength="180" autocomplete="off" />
+  </div>
+
+  <div>
+    <label for="ticket-what">{t('support.ticket.field.what')}</label>
+    <textarea id="ticket-what" name="what"></textarea>
+  </div>
+
+  <div>
+    <label for="ticket-expected">{t('support.ticket.field.expected')}</label>
+    <textarea id="ticket-expected" name="expected"></textarea>
+  </div>
+
+  <div>
+    <label for="ticket-environment">{t('support.ticket.field.environment')}</label>
+    <input id="ticket-environment" name="environment" type="text" autocomplete="off" />
+  </div>
+
+  <div>
+    <label for="ticket-version">{t('support.ticket.field.version')}</label>
+    <input id="ticket-version" name="version" type="text" autocomplete="off" />
+  </div>
+
+  <p>
+    <a class="button" id="ticket-open" href={staticLink(categories[0].template)} rel="noopener noreferrer">
+      {t('support.ticket.open')}
+    </a>
+  </p>
+
+  <p class="meta" id="ticket-status" role="status" aria-live="polite"></p>
+</form>
+
+<h3>{t('support.ticket.nojs.h3')}</h3>
+<p>{t('support.ticket.nojs.body')}</p>
+<ul class="list-plain">
+  {categories.map((c) => (
+    <li>
+      <a href={staticLink(c.template)} rel="noopener noreferrer" data-i18n-literal>{c.label}</a>
+      <span class="meta"> — {c.hint}</span>
+    </li>
+  ))}
+</ul>
+
+<script is:inline define:vars={{ cfg: ticketConfig }}>
+  (function () {
+    var form = document.querySelector('form.ticket');
+    if (!form) return;
+    var open = document.getElementById('ticket-open');
+    var status = document.getElementById('ticket-status');
+
+    function value(name) {
+      var el = form.elements[name];
+      return el && el.value ? el.value.trim() : '';
+    }
+
+    function build() {
+      var template = value('category');
+      var title = value('title');
+      var parts = [];
+      var pairs = [
+        ['what', cfg.labels.what],
+        ['expected', cfg.labels.expected],
+        ['environment', cfg.labels.environment],
+        ['version', cfg.labels.version],
+      ];
+      for (var i = 0; i < pairs.length; i += 1) {
+        var v = value(pairs[i][0]);
+        if (v) parts.push('### ' + pairs[i][1] + '\n\n' + v);
+      }
+      var description = parts.join('\n\n');
+
+      var url = cfg.newUrl + '?issuable_template=' + encodeURIComponent(template);
+      if (title) url += '&issue[title]=' + encodeURIComponent(title);
+      if (description) url += '&issue[description]=' + encodeURIComponent(description);
+
+      open.setAttribute('href', url);
+
+      if (!title) status.textContent = cfg.strings.needTitle;
+      else if (url.length > cfg.limit) status.textContent = cfg.strings.tooLong;
+      else status.textContent = cfg.strings.ready + ' (' + url.length + ')';
+    }
+
+    form.addEventListener('input', build);
+    form.addEventListener('change', build);
+    build();
+  })();
+</script>

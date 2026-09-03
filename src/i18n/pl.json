@@ -1,0 +1,1032 @@
+{
+  "brand": {
+    "name": "E-OS",
+    "tagline": "utwardzona dystrybucja pochodna Redox OS",
+    "sub": "Crimson"
+  },
+  "theme": {
+    "toggle": "Motyw",
+    "hint": "Przełącz między paletą ciemną a jasną"
+  },
+  "a11y": {
+    "skipToContent": "Przejdź do treści",
+    "primaryNav": "Główna",
+    "localeNav": "Język",
+    "lede": "Co ta strona robi dla obsługi z klawiatury i dla czytnika ekranu, które z tych twierdzeń mierzy bramka przy każdej budowie, a które są wyłącznie czyimś słowem.",
+    "claims": {
+      "h2": "Twierdzenia i sposób, w jaki każde z nich jest sprawdzane",
+      "intro": "Twierdzenie bez kontroli jest nadzieją. Prawa kolumna mówi, co jest czym.",
+      "caption": "Twierdzenia o dostępności tej strony",
+      "col": {
+        "claim": "Twierdzenie",
+        "how": "Jak jest sprawdzane"
+      },
+      "rows": [
+        {
+          "claim": "Kontrast kolorów spełnia podane niżej wartości",
+          "how": "Mierzone przy każdej budowie przez scripts/check-contrast.mjs na tokenach projektowych; budowa pada poniżej zadeklarowanego minimum."
+        },
+        {
+          "claim": "Każdy widoczny napis jest przetłumaczalny",
+          "how": "Mierzone przez scripts/check-i18n.mjs, który pada na gołym literale w pozycji tekstowej oraz w aria-label, alt, title i placeholder."
+        },
+        {
+          "claim": "Punkty orientacyjne i nagłówki są strukturalne",
+          "how": "Przejrzane ręcznie, bez automatu. Napisane jako prawdziwe elementy header, nav, main i footer z dostępnymi nazwami."
+        },
+        {
+          "claim": "Klawiatura sięga wszędzie",
+          "how": "Przejrzane ręcznie w Safari i Chrome na macOS. Bez automatu."
+        },
+        {
+          "claim": "Ograniczenie ruchu jest respektowane",
+          "how": "Reguła prefers-reduced-motion w arkuszu usuwa przejścia i płynne przewijanie. Bez automatu."
+        },
+        {
+          "claim": "Przegląd czytnikiem ekranu",
+          "how": "Nie wykonany. Zapisane tutaj jako niewykonane, zamiast pominięte."
+        }
+      ]
+    },
+    "contrast": {
+      "h2": "Kontrast",
+      "body": "Tekst podstawowy musi osiągnąć co najmniej {body}:1 wobec tła, odsyłacze co najmniej {link}:1, a tekst drugoplanowy co najmniej {muted}:1. Karmazyn akcentu mierzy 4,27:1 na ciemnym tle: wystarczy na linie, obramowania i duży krój wystawowy, nie wystarczy na tekst podstawowy. Dlatego nigdy nie niesie tekstu podstawowego, a odsyłacze niesie jaśniejszy karmazyn o wartości 7,40:1.",
+      "gate": "Te minima są czytane z tego samego pliku, który czyta bramka, więc ta strona nie może zadeklarować wartości, której budowa nie egzekwuje. Uruchom sam:"
+    },
+    "keyboard": {
+      "h2": "Klawiatura",
+      "items": [
+        "Odsyłacz pomijający jest pierwszym elementem fokusowalnym na każdej stronie i staje się widoczny, gdy przejmie fokus.",
+        "Fokus jest zawsze widoczny: obrys o grubości dwóch pikseli, w kolorze zmierzonym w obu motywach.",
+        "Przełącznik motywu jest przyciskiem: dostępny Tabem, obsługiwany Enterem lub spacją.",
+        "Kreator zgłoszenia to zwykły formularz. Każde pole ma etykietę, a wynikiem jest odsyłacz, który otwierasz świadomie — nigdy automatyczne wysłanie.",
+        "Nic nie więzi fokusu. Na tej stronie nie ma okien modalnych, karuzel ani nieskończonego przewijania."
+      ]
+    },
+    "motion": {
+      "h2": "Ruch",
+      "body": "Nie ma animacji, automatycznie odtwarzanych mediów ani paralaksy. Płynne przewijanie jest jedynym ruchem, o który prosi arkusz stylów, a prefers-reduced-motion usuwa je w całości, razem z każdym przejściem, zamiast je tylko skracać."
+    },
+    "landmarks": {
+      "h2": "Struktura",
+      "intro": "Szkielet strony jest wszędzie taki sam:",
+      "items": [
+        "Jeden nagłówek h1 na stronę, potem sekcje h2 w kolejności dokumentu. Żaden poziom nagłówka nie jest pomijany dla efektu wizualnego.",
+        "header, nav, main i footer to prawdziwe elementy, a każdy nav ma dostępną nazwę, żeby czytnik ekranu odróżnił nawigację główną od przełącznika języka i od grup w stopce.",
+        "Tabele mają podpis i nagłówki wierszy albo kolumn. Nigdy nie służą do układu strony.",
+        "Język strony jest zadeklarowany pełnym znacznikiem BCP-47, a każdy odsyłacz językowy deklaruje język, do którego prowadzi."
+      ]
+    },
+    "unverified": {
+      "h2": "Niezweryfikowane",
+      "intro": "Wypisane, zamiast pominięte:",
+      "items": [
+        "Nie wykonano przejścia czytnikiem ekranu: ani NVDA, ani JAWS, ani VoiceOver.",
+        "Żaden automatyczny audyt (axe, Lighthouse, pa11y) nie jest jeszcze wpięty w budowę.",
+        "Kontrast jest mierzony między tokenami projektowymi, a nie na wyrenderowanych pikselach, więc gdzieś odziedziczony kolor nadal może być zły.",
+        "Strona nie była testowana przy powiększeniu 200% ani z wymuszonym rozmiarem tekstu przeglądarki na małym ekranie.",
+        "Polski i angielski to jedyne języki. Żaden język pisany od prawej do lewej nie został rozłożony, choć arkusz używa właściwości logicznych tam, gdzie to ma znaczenie."
+      ]
+    },
+    "feedback": {
+      "h2": "Jeśli coś cię blokuje",
+      "body": "Załóż zgłoszenie dokumentacyjne z opisem, co chciałeś zrobić, czego użyłeś i co się stało. Bariera dostępności jest usterką, nie prośbą o funkcję.",
+      "link": "Załóż zgłoszenie"
+    }
+  },
+  "nav": {
+    "home": "Start",
+    "products": "Produkty",
+    "downloads": "Pobieranie",
+    "developers": "Dla programistów",
+    "changelog": "Dziennik zmian",
+    "support": "Wsparcie",
+    "security": "Bezpieczeństwo",
+    "about": "O projekcie",
+    "accessibility": "Dostępność",
+    "legalPrivacy": "Polityka prywatności",
+    "legalTerms": "Warunki",
+    "legalTrademarks": "Znaki towarowe",
+    "legalAboutEos": "Nota prawna"
+  },
+  "footer": {
+    "group": {
+      "project": "Projekt",
+      "help": "Pomoc",
+      "legal": "Prawne",
+      "source": "Źródła"
+    },
+    "link": {
+      "gitlab": "GitLab — źródło prawdy",
+      "github": "GitHub — lustro tylko do odczytu",
+      "roadmap": "Mapa drogowa",
+      "redox": "Redox OS — upstream"
+    },
+    "copyright": "Copyright {year} Damian (Gh0s777tt) i współtwórcy E-OS. Licencja AGPL-3.0-or-later.",
+    "trademark": "Redox OS jest znakiem towarowym fundacji Redox OS. E-OS jest niezależną dystrybucją pochodną, nie jest oficjalnym oprogramowaniem Redox OS i nie jest przez projekt Redox OS wspierany ani z nim powiązany."
+  },
+  "page": {
+    "home": {
+      "eyebrow": "E-OS",
+      "title": "Start",
+      "description": "E-OS to utwardzona dystrybucja pochodna Redox OS: weryfikowany rozruch, hybrydowo podpisany postkwantowo indeks pakietów i kuratorowany pulpit — z ograniczeniami wypisanymi na tej samej stronie."
+    },
+    "about": {
+      "eyebrow": "Projekt",
+      "title": "O projekcie",
+      "description": "Czym jest E-OS, jak zorganizowanych jest trzydzieści repozytoriów, kto go utrzymuje i jakich reguł projekt się trzyma."
+    },
+    "products": {
+      "eyebrow": "W obrazie",
+      "title": "Produkty",
+      "description": "Co dziś jedzie w obrazie E-OS, a co jest wierszem mapy drogowej — generowane z konfiguracji budowania, nie pisane ręcznie."
+    },
+    "downloads": {
+      "eyebrow": "Tylko dla programistów",
+      "title": "Pobieranie",
+      "description": "Pobieranie jest na razie tylko dla programistów. Host statyczny nie umie tego wyegzekwować, więc odsyłacze do artefaktów po prostu nie są publikowane."
+    },
+    "developers": {
+      "eyebrow": "Budowanie i weryfikacja",
+      "title": "Dla programistów",
+      "description": "Prawdziwe dokumenty, polecenia budowania, które naprawdę zostały uruchomione, i bramki, które potrafią zaświecić na czerwono."
+    },
+    "changelog": {
+      "eyebrow": "Zapis",
+      "title": "Dziennik zmian",
+      "description": "Parsowany w czasie budowy z CHANGELOG.md w repozytorium orkiestrującym, więc strona i zapis nie mogą się rozejść."
+    },
+    "support": {
+      "eyebrow": "Pomoc",
+      "title": "Wsparcie",
+      "description": "FAQ, zgłoszenie, które staje się zadaniem w GitLabie, oraz asystent AI, który jest zaprojektowany, a nie zbudowany."
+    },
+    "security": {
+      "eyebrow": "Zaufanie",
+      "title": "Prywatność i bezpieczeństwo",
+      "description": "Jak zgłosić podatność, co naprawdę robi łańcuch zaufania, gdzie nie sięga i co ta strona o tobie wie."
+    },
+    "accessibility": {
+      "eyebrow": "Oświadczenie",
+      "title": "Dostępność",
+      "description": "Twierdzenia o dostępności tej strony, które z nich mierzy bramka budowania, a które nie są zweryfikowane."
+    },
+    "legalPrivacy": {
+      "eyebrow": "Prawne",
+      "title": "Polityka prywatności",
+      "description": "Ta strona nie ustawia ciasteczek, nie prowadzi analityki i nie ładuje niczego z obcego hosta. Jeden wpis w localStorage trzyma wybór motywu."
+    },
+    "legalTerms": {
+      "eyebrow": "Prawne",
+      "title": "Warunki",
+      "description": "AGPL-3.0-or-later, brak gwarancji, brak umowy wsparcia oraz to, czym ta strona jest, a czym nie jest."
+    },
+    "legalTrademarks": {
+      "eyebrow": "Prawne",
+      "title": "Znaki towarowe",
+      "description": "Redox OS jest znakiem towarowym fundacji Redox OS. E-OS jest dystrybucją pochodną i nie jest oficjalnym oprogramowaniem Redox OS."
+    },
+    "legalAboutEos": {
+      "eyebrow": "Prawne",
+      "title": "Nota prawna",
+      "description": "Kto publikuje tę stronę, na jakiej licencji i czym jest E-OS w relacji do Redox OS."
+    }
+  },
+  "home": {
+    "h1": "Utwardzona dystrybucja pochodna Redox OS",
+    "paragraph": "E-OS jest dystrybucją Redox OS — systemu uniksopodobnego, którego mikrojądro napisano w Ruście. Nie jest pisany od zera: jądro, biblioteka C, system plików i warstwa sterowników pochodzą z Redoksa, a E-OS dokłada weryfikowany łańcuch rozruchu, indeks pakietów podpisany hybrydowo ed25519 + ML-DSA-65, listę dozwolonych schematów jądra per użytkownik i kuratorowany pulpit. Nie jest też skończony. Obraz x86_64 jedzie dziś bez aktywnego źródła pakietów, więc poprawka wydana dzisiaj nie dotrze mechanizmem aktualizacji do zainstalowanego systemu x86_64; przeglądarka w obrazie to prekompilat z upstreamu, a nie utwardzona budowa opisana w recepturze; a projekt ma jednego opiekuna. Wszystko, co na tej stronie mówi, że coś zmierzono, podaje co i kiedy zmierzono.",
+    "cta": {
+      "products": "Co jedzie dzisiaj",
+      "downloads": "Pobieranie",
+      "developers": "Zbuduj samodzielnie"
+    },
+    "verified": {
+      "h2": "Co zostało zweryfikowane",
+      "intro": "Każdy wiersz sprawdzono na wytworzonym artefakcie — na zamontowanym obrazie, na zweryfikowanym indeksie, na maszynie, która doszła do zachęty logowania — a nie na źródle, które miało go wyprodukować.",
+      "caption": "Zweryfikowane własności wraz z pomiarem, który za nimi stoi",
+      "col": {
+        "what": "Własność",
+        "measured": "Co zmierzono"
+      },
+      "rows": [
+        {
+          "what": "Weryfikowany łańcuch rozruchu",
+          "measured": "Bootloader uwierzytelnia jądro i initfs podpisem ed25519 nad SHA-512(rola, długość, dane) przed sprawdzeniem bajtów magicznych i zanim użyje jakiegokolwiek bajtu. Brak podpisu albo zerowy klucz to odmowa rozruchu, a separacja domen sprawia, że podpisany initfs nie zweryfikuje się jako jądro."
+        },
+        {
+          "what": "Postkwantowo podpisany indeks pakietów",
+          "measured": "repo.toml niesie hybrydowy podpis ed25519 + ML-DSA-65 (FIPS 204). Sprawdzone wobec żywego indeksu aarch64 z 79 pakietami: obie połowy przechodzą, a jeden przekręcony bajt sprawia, że obie odmawiają."
+        },
+        {
+          "what": "Bajty pakietu związane z podpisanym indeksem",
+          "measured": "Skrót blake3 z uwierzytelnionego manifestu jest sprawdzany wobec bajtów, które za chwilę zostaną wypakowane — na każdej ścieżce instalacji, łącznie z pkg install. Pola serial i expires dają ochronę przed cofnięciem i zamrożeniem wersji."
+        },
+        {
+          "what": "Secure Boot",
+          "measured": "Oba bootloadery UEFI niosą SBAT i są podpisane Authenticode, przy czym SBAT stemplowany jest przed podpisem, bo Authenticode obejmuje cały plik. Nośnik instalacyjny wiezie certyfikat E-OS w formacie DER pod EFI/EOS/eos-secureboot.der, bo menu firmware'u jest tym miejscem, gdzie jest potrzebny."
+        },
+        {
+          "what": "Rozruch do zachęty logowania",
+          "measured": "boot-smoke doszedł do logowania w przestrzeni użytkownika na x86_64 i na aarch64, kod wyjścia 0, zmierzone 2026-09-01."
+        },
+        {
+          "what": "Instalacja od początku do końca",
+          "measured": "Partycjonowanie, instalacja, restart, logowanie — udowodnione raz i udowodnione ponownie po poprawce dzielonego przerwania. Ścieżka szyfrowana jest sprawdzana celowo błędnym hasłem, które musi paść, zanim poprawne ma prawo zadziałać."
+        },
+        {
+          "what": "Lista dozwolonych schematów jądra per użytkownik",
+          "measured": "/etc/login_schemes.toml daje rootowi wszystko, a kontu nieuprzywilejowanemu jawną listę 25 schematów. Surowe gniazda IP są z tej listy usunięte."
+        },
+        {
+          "what": "Sterowniki w przestrzeni użytkownika",
+          "measured": "16 sterowników działa jako zwykłe procesy, więc awaria sterownika nie kładzie jądra. Bez IOMMU jest to izolacja procesowa, a nie sprzętowa — i mapa drogowa mówi to wprost."
+        },
+        {
+          "what": "Szyfrowanie całego dysku",
+          "measured": "RedoxFS AES-XTS, oferowane przez instalator. Sprzętowo przyspieszane na aarch64 przez rozszerzenia kryptograficzne ARMv8; na x86_64 ścieżka programowa."
+        },
+        {
+          "what": "Wymuszone hasło przy pierwszym rozruchu",
+          "measured": "Zarówno logowanie tekstowe, jak i graficzny greeter odmawiają przejścia dalej, dopóki konto nie ma hasła."
+        }
+      ]
+    },
+    "limits": {
+      "h2": "Co jeszcze nie jest prawdą",
+      "intro": "Ta sama strona musi nieść obie połowy, inaczej pierwsza połowa jest reklamą.",
+      "items": [
+        "Obraz x86_64 jedzie bez aktywnego źródła pakietów: oba wpisy w /etc/pkg.d/ są zakomentowane, więc aktualizacja nie dotrze do zainstalowanego systemu x86_64.",
+        "Przeglądarka w obrazie to prekompilat NetSurf 3.11 z upstreamu, a nie budowa niezależna od położenia, którą opisuje receptura — readelf pokazuje typ EXEC pod adresem 0x400000, zmierzone 2026-09-02.",
+        "Hasła ustawiane w działającym systemie są haszowane argon2i przy m=4096, t=3 — 4,0 ms na próbę wobec 14,1 ms dla argon2id używanego przy budowaniu obrazu. Dwie ścieżki, a użytkownik dostaje słabszą.",
+        "Odtwarzalność budowy nie została wykazana. Nikt nie pokazał, że ten sam commit daje ten sam obraz bit w bit.",
+        "Nic nie zostało zweryfikowane na fizycznym sprzęcie. QEMU nie dowodzi, że firmware uruchomi nośnik ani że sterownik obsłuży prawdziwy chipset.",
+        "Nie ma wydania ISO, nie ma podpisu cosign i nie opublikowano klucza PGP. Artefakty wydania niosą podpis minisign nad plikiem SHA256SUMS.",
+        "Aplikacje pulpitu nie mają żadnych testów automatycznych ani backendu okien na hoście, więc poza Redoksem przechodzą kontrolę typów, ale nie otwierają tam okna.",
+        "Projekt ma jednego opiekuna. To ma znaczenie przy decyzji, jak bardzo na nim polegać."
+      ]
+    },
+    "counts": {
+      "h2": "Kształt projektu",
+      "products": {
+        "h3": "Produkty",
+        "body": "{shipped} produkty są dziś w obrazie, a {planned} kolejne to wiersze mapy drogowej z wyceną — decyzje, nie kod.",
+        "link": "Zobacz listę produktów"
+      },
+      "repos": {
+        "h3": "Repozytoria",
+        "body": "Trzydzieści repozytoriów w jednym manifeście, każde przypięte rewizją. Cztery rodzaje: komponenty pisane dla E-OS, lustra upstreamowego Redoksa tylko do odczytu, forki z łatkami E-OS oraz publikowane artefakty pakietowe.",
+        "link": "Grupa na GitLabie"
+      },
+      "changelog": {
+        "h3": "Zapis",
+        "body": "Każdy wpis dziennika zmian nazywa commit, który go wprowadził, i to, co zmierzono, więc każdy wiersz da się sprawdzić. Ta strona parsuje ten plik w czasie budowy, zamiast go przepisywać.",
+        "link": "Przeczytaj dziennik zmian"
+      }
+    },
+    "upstream": {
+      "h2": "Zbudowany na Redox OS",
+      "body": "Istotne części E-OS — jądro, relibc, RedoxFS, warstwa sterowników i system budowania cookbook — pochodzą z Redox OS i pozostają na licencji MIT. E-OS jest niezależną dystrybucją pochodną: nie jest oficjalnym oprogramowaniem Redox OS i nie ma poparcia fundacji Redox OS.",
+      "link": "Redox OS",
+      "trademarkLink": "Jak E-OS używa nazwy Redox OS"
+    }
+  },
+  "products": {
+    "lede": "Co dziś jedzie w obrazie, co jest wierszem mapy drogowej i na czym polega różnica. Ta lista jest generowana z konfiguracji budowania, nie pisana ręcznie.",
+    "generated": {
+      "h3": "Generowane, nie deklarowane",
+      "body": "Wpisy poniżej powstają z tabel pakietów i manifestu repozytoriów w repozytorium orkiestrującym E-OS. Trzy ręcznie pisane listy produktów w tym projekcie już się rozjechały z konfiguracją; dlatego istnieje wiersz mapy drogowej PR-001 i dlatego ta strona ma generator zamiast akapitu.",
+      "sources": "Wygenerowane z: {files}"
+    },
+    "status": {
+      "shipped": "w obrazie",
+      "planned": "planowane"
+    },
+    "shipped": {
+      "h2": "W obrazie",
+      "intro": "Każdy z nich ma wpis pakietowy w konfiguracji budowania. Tam, gdzie istnieje repozytorium własne, przypięta rewizja poniżej jest tą, z której buduje się obraz."
+    },
+    "planned": {
+      "h2": "Planowane",
+      "intro": "Te cztery to decyzje z wyceną rozmiaru, a nie kod. Repozytoria założono 2026-09-03; w chwili pisania tej strony żadne z nich nie niosło szkieletu, receptury ani pina.",
+      "state": "Wyłącznie wiersz mapy drogowej: bez zawartości repozytorium, bez receptury, bez pakietu."
+    },
+    "item": {
+      "eos-notes": {
+        "summary": "Aplikacja do notatek dla pulpitu Crimson, napisana w Ruście na Slincie, na wspólnym backendzie eos-ui.",
+        "detail": "Przechowuje notatki w SQLite w trybie dziennika z wyprzedzeniem. To komponent własny E-OS, przypięty rewizją w swojej recepturze budowania."
+      },
+      "eos-control": {
+        "summary": "Centrum sterowania: przegląd systemu, procesy, bezpieczeństwo, magazyn, zasilanie, dźwięk i bieżący stan sieci.",
+        "detail": "Wchłonęło samodzielny monitor systemu i monitor integralności plików. Zakładka Bezpieczeństwo niesie bazę blake3 i audyt uprawnień, które wcześniej mieszkały w osobnej aplikacji."
+      },
+      "eos-guard": {
+        "summary": "Monitor integralności plików i uprawnień dla pulpitu Crimson; od decyzji właściciela z 2026-09-03 znów jest osobną aplikacją.",
+        "detail": "Trzyma bazę odcisków blake3 obserwowanych plików i zgłasza zmiany uprawnień. Ten sam silnik działa też w karcie Bezpieczeństwo w centrum sterowania — z drugiej kopii kodu, nie ze wspólnej biblioteki. To dług zapisany w roadmapie, nie ukryty."
+      },
+      "netsurf": {
+        "summary": "Przeglądarka w obrazie: NetSurf 3.11.",
+        "detail": "Receptura buduje ją ze źródeł jako program niezależny od położenia. Artefakt, który jest obecnie w obrazie, nie jest tą budową — a mapa drogowa prowadzi tę różnicę, zamiast ją chować."
+      },
+      "cosmic-term": {
+        "summary": "Emulator terminala z upstreamowego zestawu aplikacji COSMIC.",
+        "detail": "Jest pakowany i wysyłany bez zmian; edytor i menedżer plików pochodzą z tego samego zestawu. E-OS ich nie utrzymuje i nie twierdzi, że utrzymuje."
+      },
+      "eos-sheets": {
+        "summary": "Arkusz kalkulacyjny: komórki, mały silnik formuł, import i eksport CSV oraz TSV.",
+        "detail": "Plan wymienia około czterdziestu funkcji i udokumentowany format kontenera dla pierwszej wersji, import xlsx później i żadnego języka makr."
+      },
+      "eos-slides": {
+        "summary": "Edytor prezentacji: lista slajdów, pola tekstowe i obrazkowe oraz widok prezentera w drugim oknie.",
+        "detail": "Eksport do PDF planowany przez istniejącą bibliotekę Rusta. Import pptx nie jest obiecywany."
+      },
+      "eos-drive": {
+        "summary": "Dysk w chmurze: serwer WebDAV na edycji serwerowej E-OS oraz klient synchronizacji.",
+        "detail": "Czeka na edycję serwerową, której tutaj nigdy nie zbudowano, co czyni go najodleglejszym z tej czwórki."
+      },
+      "eos-store": {
+        "summary": "Sklep z aplikacjami nad indeksem pakietów, który już istnieje i już jest podpisany.",
+        "detail": "Indeks i narzędzie pakietowe istnieją. Schemat metadanych, zrzuty ekranu i interfejs klienta — nie. W pierwszej wersji bez kont i bez płatności."
+      }
+    },
+    "caveat": {
+      "no-host-backend": "Brak backendu okien na hoście: przechodzi kontrolę typów na macOS i Linuksie, ale nie otwiera tam okna.",
+      "no-tests": "Brak testów automatycznych w repozytorium, a zatem brak podłogi pokrycia.",
+      "netsurf-prebuilt": "Wysyłany jako prekompilat z upstreamu, a nie jako utwardzona budowa opisana w recepturze — zmierzone 2026-09-02.",
+      "upstream-app": "Utrzymywane w upstreamie, nie przez E-OS.",
+      "not-started": "Nic nie jest napisane. Wiersz istnieje na mapie drogowej wraz z wyceną rozmiaru.",
+      "needs-server": "Zablokowane na edycji serwerowej E-OS, której tutaj nigdy nie zbudowano.",
+      "duplicate-engine": "Silnik integralności istnieje dwa razy — w tej aplikacji i w centrum sterowania. Scalenie ich w jedną bibliotekę to wiersz roadmapy PR-004.",
+      "no-signature-engine": "Brak skanowania sygnaturowego i brak przechwytywania dostępu do plików. Słowo „antywirus” nie jest o nim używane, dopóki taki silnik nie powstanie (wiersze PR-003 i PR-004b)."
+    },
+    "field": {
+      "package": "Pakiet",
+      "repository": "Repozytorium",
+      "type": "typ repozytorium {type}",
+      "pin": "Przypięta rewizja",
+      "recipe": "Receptura",
+      "roadmap": "Mapa drogowa",
+      "state": "Stan"
+    },
+    "absent": {
+      "h2": "Świadomie nieobecne",
+      "intro": "Dwie z tych rzeczy to wybory z uzasadnieniem, a dwie to luki, które prowadzi mapa drogowa. README samego projektu raz zatarło tę różnicę i musiało to poprawić; tutaj różnica jest utrzymana.",
+      "items": [
+        "Brak antywirusa. Słowo nie jest używane, dopóki nie powstanie silnik działający przy dostępie. Produktem bezpieczeństwa jest E-OS Guard, który pilnuje integralności i uprawnień.",
+        "Brak obowiązkowej kontroli dostępu w rodzaju SELinuksa czy AppArmora. Modelem kontroli dostępu jest lista dozwolonych schematów jądra per użytkownik.",
+        "Brak narzędzia do kopii zapasowych. To jest luka i mapa drogowa prowadzi ją jako lukę.",
+        "Brak VPN i brak Tora. Również luki: oba to nowe podsystemy, a nie przełącznik czekający na przestawienie."
+      ],
+      "link": "Wiersze mapy drogowej stojące za tą listą"
+    },
+    "downloadsLink": "Jak dziś zdobyć E-OS"
+  },
+  "about": {
+    "lede": "Czym jest ten projekt, kto go prowadzi i jakich reguł się trzyma.",
+    "what": {
+      "h2": "Czym jest E-OS",
+      "p1": "E-OS to dystrybucja Redox OS z dołożonym łańcuchem zaufania: weryfikowanym rozruchem, hybrydowo podpisanym indeksem pakietów i kuratorowanym pulpitem. Sam system operacyjny to Redox — jądro, biblioteka C, system plików i sterowniki pochodzą z upstreamu, część z nich przez forki, które niosą łatki E-OS i są utrzymywane w stanie zdatnym do rebase'u.",
+      "p2": "To nie jest Tails, nie Qubes OS i nie GrapheneOS. Tamte rozwiązują inne problemy, a porównywanie się z nimi byłoby nieuczciwe wobec czytelnika, który próbuje wybrać. Sensowne porównanie jest z samym Redoksem: E-OS to Redox z łańcuchem zaufania, który da się sprawdzić."
+    },
+    "repos": {
+      "h2": "Jak zorganizowany jest ekosystem",
+      "intro": "Trzydzieści repozytoriów w jednym manifeście, każde przypięte rewizją. GitLab jest źródłem prawdy, GitHub lustrem tylko do odczytu. Pomylenie typu repozytorium jest najkosztowniejszym błędem, jaki tu można popełnić, więc typ jest polem egzekwowanym przez integrację ciągłą, a nie zdaniem w dokumencie.",
+      "caption": "Typy repozytoriów, z manifestu",
+      "col": {
+        "type": "Typ",
+        "meaning": "Znaczenie",
+        "count": "Liczba"
+      },
+      "rows": [
+        {
+          "type": "A",
+          "meaning": "Komponenty pisane dla E-OS",
+          "count": "6"
+        },
+        {
+          "type": "B",
+          "meaning": "Vendorowane lustra upstreamowego Redoksa, tylko do odczytu, nigdy nieedytowane ręcznie",
+          "count": "10"
+        },
+        {
+          "type": "C",
+          "meaning": "Forki z łatkami E-OS, utrzymywane w stanie zdatnym do rebase'u",
+          "count": "12"
+        },
+        {
+          "type": "D",
+          "meaning": "Publikowane artefakty pakietowe",
+          "count": "2"
+        }
+      ]
+    },
+    "who": {
+      "h2": "Kto go prowadzi",
+      "p1": "Jeden opiekun. Stoi to również w polityce bezpieczeństwa, bo jest to informacja potrzebna człowiekowi, który decyduje, jak ujawnić podatność albo jak bardzo polegać na projekcie.",
+      "p2": "Za E-OS nie stoi żadna firma, żaden podmiot prawny ani żadne finansowanie. Wiersz praw autorskich brzmi „Damian (Gh0s777tt) i współtwórcy E-OS”, a całość jest na licencji AGPL-3.0-or-later."
+    },
+    "method": {
+      "h2": "Reguły, których ten projekt się trzyma",
+      "intro": "To nie są aspiracje. Każda z nich istnieje dlatego, że jej brak coś zepsuł, a potem trzeba to było znaleźć najtrudniejszą drogą.",
+      "rules": [
+        "Kontrola, która nie potrafi zawieść, nie jest kontrolą. Każda bramka ma test negatywny, który widziano na czerwono.",
+        "Weryfikuj artefakt, nie kod wyjścia. Zielona budowa wielokrotnie oznaczała binarkę sprzed dwóch miesięcy.",
+        "Domyślnie fail-closed. Wyjątek wymaga jawnej zmiennej środowiskowej, a podsumowanie mówi, co pominięto.",
+        "Mierz, nie wnioskuj. Wniosek z jednego katalogu nie jest wnioskiem ze wszystkich źródeł.",
+        "Poprawiaj własne opublikowane wnioski jawnie, z poprawką obok tego, co zastępuje.",
+        "Dokumentacja zmienia się w tym samym merge requeście co rzecz, którą opisuje — nigdy w następnym."
+      ],
+      "link": "Pełny kontrakt pracy"
+    },
+    "notclaims": {
+      "h2": "Czego ten projekt nie twierdzi",
+      "intro": "Zapisane tutaj, żeby nikt nie musiał tego wywnioskować z tego, czego brakuje.",
+      "items": [
+        "Nie twierdzi, że został poddany audytowi przez kogokolwiek spoza projektu.",
+        "Nie twierdzi, że budowy są odtwarzalne. To cel; porównania nikt jeszcze nie wykonał.",
+        "Nie twierdzi, że uruchomi się na twoim sprzęcie. Nic nie zostało jeszcze zbootowane na fizycznej maszynie.",
+        "Nie twierdzi zgodności z binarkami Linuksa ani stabilnej powierzchni wywołań systemowych. ABI jest odziedziczone z Redoksa i wciąż się rusza.",
+        "Nie twierdzi, że ma poparcie projektu Redox OS."
+      ]
+    },
+    "legalLink": "Nota prawna",
+    "developersLink": "Dokumentacja dla programistów"
+  },
+  "developers": {
+    "lede": "Gdzie są prawdziwe dokumenty, co naprawdę robi budowa na hoście referencyjnym i które bramki potrafią zaświecić na czerwono.",
+    "documents": {
+      "h2": "Dokumenty",
+      "intro": "Mieszkają w repozytorium orkiestrującym i to one są źródłem prawdy. Ta strona renderuje niektóre z nich; nigdy ich nie zastępuje."
+    },
+    "doc": {
+      "roadmap": {
+        "title": "ROADMAP.md",
+        "body": "Każda planowana pozycja z identyfikatorem, wyceną rozmiaru i dowodem statusu. Wiersz oznaczony jako zrobiony niesie w tej samej linii commit, merge request albo numer zgłoszenia."
+      },
+      "claude": {
+        "title": "CLAUDE.md",
+        "body": "Kontrakt pracy: jak budować, co musi przejść, zanim zmiana zaliczy się jako skończona, i jakie pułapki to repozytorium już na kimś zatrzasnęło."
+      },
+      "architecture": {
+        "title": "ARCHITECTURE.md",
+        "body": "Jak elementy do siebie pasują: ścieżka budowania, graf repozytoriów i miejsce, w którym zakotwiczone jest zaufanie."
+      },
+      "contributing": {
+        "title": "CONTRIBUTING.md",
+        "body": "Jak zaproponować zmianę, konwencja commitów i to, co musi nieść merge request."
+      },
+      "security": {
+        "title": "SECURITY.md",
+        "body": "Jak zgłosić podatność, jakie są cele czasowe odpowiedzi i które wersje dostają poprawki."
+      },
+      "changelog": {
+        "title": "CHANGELOG.md",
+        "body": "Każdy wpis nazywa commit, który go wprowadził, oraz to, co zmierzono, więc każdy wiersz da się sprawdzić."
+      },
+      "hardware": {
+        "title": "HARDWARE.md",
+        "body": "Macierz zgodności i to, co faktycznie zbootowano — w odróżnieniu od tego, co powinno działać."
+      },
+      "docs": {
+        "title": "docs/",
+        "body": "Zestaw dokumentacji: architektura, bezpieczeństwo, raporty audytu, decyzje architektoniczne i materiał referencyjny."
+      }
+    },
+    "build": {
+      "h2": "Budowanie",
+      "intro": "Budowa idzie w kontenerze. Na hoście referencyjnym — macOS na Apple Silicon z podmanem — katalog projektu leży na exFAT, którego podman nie podmontuje, więc opakowanie buduje w wolumenie. To są polecenia, które zostały uruchomione, a nie ich streszczenie.",
+      "note": "Uruchamianie make wprost z katalogu projektu na tym hoście nie działa, a make melduje, że nie ma nic do zrobienia, składając obraz ze starych artefaktów. Opakowanie istnieje dokładnie z tego powodu."
+    },
+    "gates": {
+      "h2": "Bramki",
+      "intro": "Co potrafi zaświecić na czerwono i gdzie.",
+      "caption": "Bramki w repozytorium orkiestrującym",
+      "col": {
+        "gate": "Bramka",
+        "state": "Co robi"
+      },
+      "rows": [
+        {
+          "gate": "scripts/verify.sh",
+          "state": "Szesnaście etapów. Kod 1 znaczy, że znaleziono wadę; kod 2 znaczy, że bramka nie mogła się wykonać. Brakujący skaner to kod 2, nigdy zaliczenie."
+        },
+        {
+          "gate": "scripts/ci-integrity.sh",
+          "state": "Osiemnaście kontroli niezmienników plus sonda, która sprawdza własne przyrządy, zanim ruszy pierwsza kontrola."
+        },
+        {
+          "gate": "scripts/ci-boot-smoke.sh",
+          "state": "Uruchamia zbudowany obraz w QEMU i czeka na zachętę logowania w przestrzeni użytkownika. PASS na obu architekturach, zmierzone 2026-09-01."
+        },
+        {
+          "gate": "gitleaks, osv-scanner, cargo-deny",
+          "state": "Skan sekretów na pełnej historii i skan podatności na obu manifestach."
+        },
+        {
+          "gate": "coverage",
+          "state": "cargo llvm-cov z podłogą 38% linii na narzędziu podpisującym; 41,06% zmierzone 2026-09-01. Podłoga łapie regresję, nie certyfikuje 38% jako dobrego wyniku."
+        },
+        {
+          "gate": "shellcheck",
+          "state": "Błędy blokują, ostrzeżenia są doradcze. Zero błędów w skryptach powłoki."
+        }
+      ],
+      "ci": "Współdzielone runnery GitLaba mają limit minut i wyczerpują się z przerwami. GitHub Actions nigdy nie wyprodukował przebiegu dla tego repozytorium. Własny runner eos-heavy nie zużywa współdzielonych minut i to on obsługuje ciężkie zadania — łącznie z zadaniem pages tej strony. Lokalny przebieg verify.sh jest jedyną bramką, o której z góry wiadomo, że się wykona."
+    },
+    "contribute": {
+      "h2": "Współpraca",
+      "intro": "Skrót kontraktu:",
+      "rules": [
+        "Bez commitów na main. Gałąź, potem merge request.",
+        "Bez force-push, nigdy, także na własnej gałęzi.",
+        "Jedna zmiana logiczna na merge request.",
+        "Każda zmiana ma test albo pisemne uzasadnienie, dlaczego testu napisać się nie da — uzgodnione, zanim zmiana wejdzie.",
+        "Nigdy nie edytuj ręcznie pliku generowanego — plików blokad, SBOM-ów, listy licencji zewnętrznych. Regeneruj je.",
+        "Żadnych sekretów w repozytorium ani w logu. Wygenerowanie klucza podpisującego jest działaniem człowieka i świadomie nie jest zautomatyzowane."
+      ],
+      "issues": "Zgłoszenia w repozytorium orkiestrującym",
+      "support": "Wsparcie i zgłoszenia"
+    },
+    "site": {
+      "h2": "Ta strona",
+      "intro": "Strona to osobne repozytorium, wyjście statyczne, bez backendu. Jej własne bramki chodzą przed budową:",
+      "note": "check-i18n pada, gdy klucza brakuje w katalogu komunikatów albo gdy komponent niesie goły napis w pozycji tekstowej. check-changelog pada, gdy parser się cofnie albo gdy vendorowany dziennik zmian rozjedzie się z repozytorium orkiestrującym. check-contrast mierzy każdą parę kolorów, którą deklaruje oświadczenie o dostępności. Wszystkie trzy kończą się kodem 1 przy znalezisku i kodem 2, gdy w ogóle nie mogły się wykonać."
+    }
+  },
+  "changelog": {
+    "lede": "Parsowany w czasie budowy z CHANGELOG.md w repozytorium orkiestrującym. Nic tutaj nie jest przepisywane, więc strona i zapis nie mogą się rozejść.",
+    "language": {
+      "h3": "Uwaga o języku",
+      "body": "Wpisy są odtworzone dokładnie tak, jak je napisano, a wiele z nich jest po polsku. Tłumaczenie ich tutaj stworzyłoby drugą wersję zapisu, którego wartość polega na tym, że jest oryginałem. Strona wokół nich idzie za twoim wyborem języka; zapis nie."
+    },
+    "provenance": "Źródło: {origin} · {bytes} bajtów · sha256 {sha} · CRLF {crlf} · {releases} wydań · {sections} sekcji · {entries} wpisów",
+    "sourceLink": "Plik, z którego zbudowano tę stronę",
+    "unreleased": "niewydane"
+  },
+  "downloads": {
+    "lede": "Na razie tylko dla programistów. Ta strona mówi, co to znaczy na hoście statycznym i czego znaczyć nie może.",
+    "gate": {
+      "h3": "Co znaczy tutaj „tylko dla programistów”",
+      "p1": "Decyzja właściciela z 2026-09-03 brzmi: pobieranie pozostaje zamknięte do kręgu programistów aż do odwołania. Ta strona jest serwowana przez GitLab Pages, który serwuje pliki i niczego nie uruchamia: nie umie zapytać, kim jesteś, więc nie umie wyegzekwować bramki.",
+      "p2": "Dlatego bramką nie jest przełącznik, który coś przed tobą chowa. Bramką jest nieobecność odsyłaczy: dopóki flaga poniżej jest prawdziwa, żaden adres artefaktu nie trafia do tej strony w ogóle. Przełącznik po stronie klienta w rodzaju „czy jesteś programistą?” byłby ozdobą i ta strona nie będzie udawać inaczej. Prawdziwa bramka wymaga usługi tożsamości po stronie serwera, która wciąż jest tylko wierszem mapy drogowej.",
+      "flag": "Flaga konfiguracji {flag} = {value}"
+    },
+    "closed": {
+      "h2": "Na tej stronie nie ma odsyłaczy do pobrania",
+      "body": "Świadomie. Powody warto wypisać, bo są to zarazem powody, dla których flaga jeszcze nie została przestawiona:",
+      "reasons": [
+        "Nic nie zostało zbootowane na fizycznym sprzęcie. Publikacja obrazu sugeruje, że ma być uruchamiany na maszynie, której nigdy nie testowano.",
+        "Obraz x86_64 jedzie bez aktywnego źródła pakietów, więc zainstalowany system nie może dostać poprawki mechanizmem aktualizacji.",
+        "Nie ma ISO ani podpisu cosign. Artefakty wydania niosą podpis minisign nad plikiem SHA256SUMS.",
+        "Prawdziwa bramka pobierania wymaga sprawdzenia tożsamości po stronie serwera, a takiego jeszcze nie ma."
+      ],
+      "buildInstead": "Zbuduj zamiast tego",
+      "buildBody": "Budowa jest odtwarzalna w sensie „uruchamia się”, jeszcze nie w sensie „bit w bit”. Wymaga podmana i mniej więcej 37 GB cache'u budowania.",
+      "developersLink": "Dokumentacja dla programistów"
+    },
+    "open": {
+      "h2": "Artefakty"
+    },
+    "existing": {
+      "h2": "Co już jest publiczne",
+      "intro": "Uczciwość wymaga powiedzenia, że pewne rzeczy da się dziś pobrać, mimo że ta strona nie publikuje niczego:",
+      "items": [
+        "Podpisany indeks pakietów aarch64 jest publiczny na GitHub Pages i odpowiada kodem HTTP 200. Indeks x86_64 odpowiada 404.",
+        "Obrazy nocne istnieją jako artefakty zadań integracji ciągłej z tygodniowym okresem przechowywania.",
+        "Obiekt wydania na GitHubie istnieje wyłącznie dla v0.1.0. v0.2.0 to adnotowany, podpisany tag, za którym nie stoi żaden obiekt wydania."
+      ]
+    },
+    "verify": {
+      "h2": "Jeśli jednak zdobędziesz obraz, zweryfikuj go",
+      "intro": "Kroki, które mają znaczenie, w kolejności:",
+      "steps": [
+        "Sprawdź plik SHA256SUMS wobec surowego obrazu, a nie wobec skompresowanego opakowania transportowego.",
+        "Zweryfikuj podpis minisign nad SHA256SUMS opublikowanym kluczem publicznym, zanim zaufasz jakiemukolwiek skrótowi w środku.",
+        "Jeśli uruchamiasz pod Secure Bootem na maszynie, której nie wolno ci przekonfigurować, licz się z koniecznością wgrania najpierw certyfikatu E-OS. Jedzie on na nośniku instalacyjnym pod EFI/EOS/eos-secureboot.der.",
+        "Po instalacji sprawdź, że kotwice zaufania w /etc/pkg/ zgadzają się z opublikowanymi połowami publicznymi."
+      ],
+      "securityLink": "Polityka bezpieczeństwa"
+    },
+    "hardware": {
+      "h2": "Sprzęt",
+      "body": "Macierz zgodności wypisuje, co zbootowano, a czego nie. Wszystko oznaczone jako wymagające fizycznego sprzętu jest niezweryfikowane: QEMU nie dowodzi, że firmware uruchomi nośnik ani że sterownik obsłuży prawdziwy chipset.",
+      "link": "Macierz sprzętowa"
+    }
+  },
+  "support": {
+    "lede": "FAQ, zgłoszenie, które staje się zadaniem w GitLabie, oraz asystent AI, który jest zaprojektowany, a nie zbudowany.",
+    "security": {
+      "h3": "Błędy bezpieczeństwa nie idą tędy",
+      "body": "Nie zakładaj publicznego zgłoszenia dla podatności. Są dwa kanały prywatne i oba są monitorowane.",
+      "link": "Jak zgłosić problem bezpieczeństwa"
+    },
+    "tickets": {
+      "h2": "Zgłoszenia",
+      "p1": "Nie ma backendu. Ta strona to pliki statyczne na GitLab Pages, więc formularz na niej nie może niczego zapisać ani niczego wysłać.",
+      "p2": "Dlatego zgłoszenie jest zadaniem w projekcie GitLaba. Formularz poniżej składa wypełniony odsyłacz „nowe zgłoszenie” w twojej przeglądarce. Nic nie opuszcza tej strony, dopóki go nie otworzysz, a treść przeglądasz i wysyłasz już w GitLabie. Potrzebujesz do tego konta GitLaba.",
+      "project": "Projekt zgłoszeń: {project}",
+      "limits": {
+        "h3": "Czego to rozwiązanie nie potrafi",
+        "items": [
+          "Zgłoszenia są publiczne. Wszystko, co w nie wkleisz, jest publiczne od chwili wysłania.",
+          "Potrzebujesz konta GitLaba. Nie ma zgłoszenia anonimowego.",
+          "Numeru zgłoszenia nie ma, dopóki nie utworzy go GitLab, a ta strona nie wysyła żadnej poczty.",
+          "Bardzo długi opis nie przeżyje adresu URL. Kreator mówi, kiedy odsyłacz robi się za długi; resztę wklej do zgłoszenia po jego otwarciu.",
+          "Nic na tej stronie nie jest zapisywane, więc niedokończone zgłoszenie przepada po zamknięciu karty."
+        ]
+      },
+      "browse": "Przeglądaj istniejące zgłoszenia"
+    },
+    "ticket": {
+      "noBackend": "Nic stąd nie jest wysyłane. Przycisk poniżej otwiera GitLaba z wypełnionymi polami.",
+      "field": {
+        "category": "Kategoria",
+        "title": "Podsumowanie",
+        "what": "Co się stało",
+        "expected": "Czego oczekiwałeś",
+        "environment": "Maszyna i architektura",
+        "version": "Wersja E-OS albo commit"
+      },
+      "categories": [
+        {
+          "id": "bug",
+          "label": "Usterka",
+          "template": "bug",
+          "hint": "Coś zachowuje się inaczej, niż mówi dokumentacja."
+        },
+        {
+          "id": "question",
+          "label": "Pytanie",
+          "template": "question",
+          "hint": "Nie udało ci się znaleźć odpowiedzi w dokumentacji."
+        },
+        {
+          "id": "hardware",
+          "label": "Raport sprzętowy",
+          "template": "hardware",
+          "hint": "Uruchomiło się albo nie uruchomiło na konkretnej maszynie."
+        },
+        {
+          "id": "documentation",
+          "label": "Dokumentacja",
+          "template": "documentation",
+          "hint": "Coś na tej stronie albo w dokumentach jest błędne lub brakuje."
+        }
+      ],
+      "open": "Otwórz wypełnione zgłoszenie w GitLabie",
+      "ready": "Odsyłacz gotowy. Przejrzyj go w GitLabie przed wysłaniem. Długość:",
+      "tooLong": "Odsyłacz jest dłuższy, niż GitLab niezawodnie przyjmuje. Skróć tekst tutaj, a resztę wklej po otwarciu zgłoszenia.",
+      "needTitle": "Dodaj podsumowanie, żeby zbudować odsyłacz.",
+      "nojs": {
+        "h3": "Bez JavaScriptu",
+        "body": "Te odsyłacze działają przy wyłączonych skryptach. Niosą wyłącznie szablon zgłoszenia; resztę wpisujesz w GitLabie."
+      }
+    },
+    "ai": {
+      "h2": "Asystent AI",
+      "badge": "Zaprojektowany, nie zbudowany",
+      "p1": "Na tej stronie nie ma czatu ani żadnego punktu końcowego za nim. Nic, co gdziekolwiek tutaj wpiszesz, nie trafia do modelu.",
+      "p2": "Decyzja z 2026-09-03 brzmi: jeśli E-OS kiedykolwiek dostanie asystenta wsparcia, to będzie on uruchamiał własny model na własnej maszynie. Wołanie cudzej usługi hostowanej po to, by odpowiadać na pytania o system zbudowany wokół weryfikowalnego łańcucha zaufania, przeczyłoby założeniu.",
+      "p3": "To ma swoją cenę i ta cena jest powodem, dla którego jest to projekt, a nie funkcja: E-OS nie ma stosu sterowników GPU, nie ma w obrazie biblioteki algebry liniowej i nie ma edycji serwerowej, którą kiedykolwiek zbudowano. Dokument projektowy mówi, co realnie uruchomi host wyłącznie procesorowy, a czego nie uruchomi.",
+      "doc": "Dokument projektowy: {path}",
+      "what": {
+        "h3": "Co obejmuje projekt",
+        "items": [
+          "Klasę modelu, która mieści się na hoście bez GPU: model instrukcyjny o rozmiarze od jednego do czterech miliardów parametrów, skwantyzowany, odpowiadający z pobranej dokumentacji, a nie z pamięci.",
+          "Wyszukiwanie po dokumentacji, dzienniku zmian i mapie drogowej, z każdą odpowiedzią cytującą plik, z którego pochodzi.",
+          "Bariery: bez powłoki, bez systemu plików, bez zakładania zgłoszeń i ze ścieżką odmowy, gdy wyszukiwanie nic nie znajdzie.",
+          "Fazy z wycenami, tak by pierwsza faza była użyteczna, zanim powstanie edycja serwerowa."
+        ]
+      },
+      "not": {
+        "h3": "Czym nie będzie",
+        "items": [
+          "Nie będzie opakowaniem na cudzy hostowany model.",
+          "Nie będzie odpowiadał na pytania o bezpieczeństwo ani triażował podatności.",
+          "Nie będzie działał na twoim systemie ani zakładał zgłoszeń w twoim imieniu.",
+          "Nie będzie istniał w ogóle, dopóki nie powstanie edycja serwerowa E-OS."
+        ]
+      }
+    },
+    "faq": {
+      "h2": "Częste pytania",
+      "items": [
+        {
+          "q": "Czy mogę dziś uruchomić E-OS?",
+          "a": "Możesz go zbudować i uruchomić w QEMU. Nic nie zostało jeszcze zbootowane na fizycznym sprzęcie, a strona pobierania nie publikuje żadnych obrazów."
+        },
+        {
+          "q": "Czy to Linux?",
+          "a": "Nie. To dystrybucja pochodna Redox OS, którego mikrojądro napisano w Ruście. Binarki Linuksa się na nim nie uruchomią."
+        },
+        {
+          "q": "Jakie architektury?",
+          "a": "x86_64 i aarch64. Obie doszły w QEMU do zachęty logowania w przestrzeni użytkownika 2026-09-01."
+        },
+        {
+          "q": "Czy mogę instalować pakiety?",
+          "a": "Na aarch64 podpisany indeks pakietów żyje. Na x86_64 obraz nie ma aktywnego źródła pakietów, co jest prowadzone jako otwarta usterka, a nie ukrywane."
+        },
+        {
+          "q": "Czy jest wsparcie komercyjne?",
+          "a": "Nie. To projekt z jednym opiekunem, bez podmiotu prawnego za plecami."
+        },
+        {
+          "q": "Dlaczego dziennik zmian jest częściowo po polsku?",
+          "a": "Bo tak został napisany, a przepisywanie zapisu po fakcie uczyniłoby go mniej wiarygodnym, nie bardziej. Strona wokół jest tłumaczona; zapis nie."
+        },
+        {
+          "q": "Jak zgłosić, że nie uruchamia się na mojej maszynie?",
+          "a": "Załóż raport sprzętowy z maszyną, firmware'em, architekturą i ostatnią linijką, którą widziałeś. Zdjęcie ekranu jest bardziej użyteczne niż jego opis."
+        },
+        {
+          "q": "Skąd biorą się identyfikatory mapy drogowej, które ta strona ciągle cytuje?",
+          "a": "Z ROADMAP.md w repozytorium orkiestrującym. Każdy identyfikator niesie tam wycenę rozmiaru, a tam, gdzie status mówi „zrobione”, także dowód."
+        }
+      ]
+    },
+    "channels": {
+      "h2": "Kanały",
+      "intro": "Są trzy i żaden z nich nie jest czatem.",
+      "tickets": "Zgłoszenia — zadania w projekcie wsparcia",
+      "upstreamIssues": "Usterki w repozytorium orkiestrującym",
+      "advisories": "Bezpieczeństwo — GitHub Security Advisories, prywatnie",
+      "response": "Cele czasowe odpowiedzi są te z polityki bezpieczeństwa: 72 godziny na potwierdzenie, siedem dni na wstępną ocenę. To cele jednego opiekuna, nie umowa."
+    }
+  },
+  "security": {
+    "lede": "Jak zgłosić podatność, co naprawdę robi łańcuch zaufania, gdzie nie sięga i co ta strona o tobie wie.",
+    "report": {
+      "h3": "Zgłaszanie podatności",
+      "p1": "Nie zakładaj publicznego zgłoszenia. Dwa kanały prywatne, oba monitorowane:",
+      "advisories": "GitHub Security Advisories — prywatny wątek i droga do CVE",
+      "email": "Napisz do opiekuna",
+      "pgp": "Dla tego projektu nie opublikowano klucza PGP. Nie szyfruj do klucza znalezionego gdzie indziej, który podaje się za nasz; użyj Security Advisories, które są prywatne bez potrzeby klucza.",
+      "policyLink": "Pełna polityka bezpieczeństwa"
+    },
+    "targets": {
+      "h2": "Cele czasowe odpowiedzi",
+      "intro": "Cele jednego opiekuna, podane jako cele, a nie jako umowa. Jeśli termin ma zostać przekroczony, dowiesz się o tym, zanim minie, wraz z powodem.",
+      "caption": "Z polityki bezpieczeństwa",
+      "col": {
+        "stage": "Etap",
+        "target": "Cel"
+      },
+      "rows": [
+        {
+          "stage": "Potwierdzenie odbioru",
+          "target": "72 godziny"
+        },
+        {
+          "stage": "Wstępna ocena wraz z istotnością",
+          "target": "7 dni"
+        },
+        {
+          "stage": "Poprawka albo udokumentowane obejście, krytyczne lub wysokie",
+          "target": "30 dni"
+        },
+        {
+          "stage": "Poprawka albo udokumentowane obejście, średnie lub niskie",
+          "target": "90 dni"
+        },
+        {
+          "stage": "Ujawnienie publiczne",
+          "target": "Skoordynowane: domyślnie 90 dni od zgłoszenia albo w dniu wydania poprawki, cokolwiek nastąpi pierwsze"
+        }
+      ],
+      "caveat": "Jedno zastrzeżenie trzeba powiedzieć wprost: obraz x86_64 jedzie bez aktywnego źródła pakietów, więc poprawka wydana dzisiaj nie dotrze mechanizmem aktualizacji do zainstalowanego systemu x86_64."
+    },
+    "chain": {
+      "h2": "Co robi łańcuch zaufania",
+      "intro": "Każdą z tych rzeczy sprawdzono na wytworzonym artefakcie, a nie na źródle, które miało go wyprodukować.",
+      "items": [
+        "Bootloader weryfikuje jądro i initfs podpisem ed25519 przed sprawdzeniem bajtów magicznych i zanim użyje jakiegokolwiek bajtu. Separacja domen sprawia, że podpisany initfs nie zweryfikuje się jako jądro.",
+        "Indeks pakietów jest podpisany hybrydowo ed25519 i ML-DSA-65. Obie połowy muszą przejść, a jeden przekręcony bajt sprawia, że obie odmawiają.",
+        "Kotwice zaufania są przypięte wewnątrz obrazu i są bajt w bajt zgodne z zacommitowanymi połowami publicznymi.",
+        "Bajty pakietu są sprawdzane wobec skrótu blake3 z uwierzytelnionego manifestu przed wypakowaniem, a pola serial i expires dają ochronę przed cofnięciem i zamrożeniem wersji.",
+        "Oba bootloadery UEFI niosą SBAT i są podpisane Authenticode, przy czym SBAT stemplowany jest przed podpisem, bo podpis obejmuje cały plik."
+      ]
+    },
+    "gaps": {
+      "h2": "Gdzie nie sięga",
+      "intro": "Łańcuch zaufania, który jest wyłącznie opisany, nie jest łańcuchem zaufania. To są części opisane, ale jeszcze nieprawdziwe.",
+      "items": [
+        "Brak IOMMU. Sterowniki są osobnymi procesami, co jest izolacją procesową, a nie sprzętową.",
+        "Piaskownica aplikacji jest planowana, nie wysyłana: pakiet izolacji jest wyłączony, a polityki per aplikacja nie ma.",
+        "Nie ma trwałego dziennika audytu ani filtra pakietów.",
+        "Hasła ustawiane w działającym systemie są haszowane argon2i przy m=4096, t=3 — słabiej niż argon2id używanym przy budowaniu obrazu.",
+        "Klucze podpisujące leżą na hoście budowania, a nie w module HSM ani na tokenie. Powierzenie kluczy jest wierszem mapy drogowej zablokowanym na sprzęcie.",
+        "Nic nie zostało zweryfikowane na fizycznym sprzęcie, więc łańcuch rozruchu jest udowodniony wyłącznie pod QEMU i jego firmware'em."
+      ]
+    },
+    "sitedata": {
+      "h2": "Co ta strona o tobie wie",
+      "p1": "Nic, co dociera do projektu. To pliki statyczne bez analityki, bez ciasteczek, bez trackerów i bez czcionek czy skryptów z obcych hostów. Jedynym magazynem przeglądarki, z którego korzysta, jest pojedynczy wpis localStorage z twoim wyborem motywu jasnego albo ciemnego — i nigdy nie opuszcza twojego urządzenia.",
+      "p2": "Host serwujący pliki widzi twoje żądanie tak, jak widzi je każdy serwer WWW, na zasadach swojego operatora. Jeśli otworzysz odsyłacz do GitLaba, GitHuba albo Redox OS, od tej chwili obowiązują ich zasady.",
+      "link": "Pełna polityka prywatności"
+    },
+    "faq": {
+      "h2": "Pytania o bezpieczeństwo",
+      "items": [
+        {
+          "q": "Czy E-OS przeszedł audyt?",
+          "a": "Nie u nikogo spoza projektu. W repozytorium są wewnętrzne raporty audytowe z datami i metodą; to samooceny i tak są opisane."
+        },
+        {
+          "q": "Czy jest postkwantowy?",
+          "a": "Podpis indeksu pakietów jest hybrydowy: ed25519 i ML-DSA-65 — więc ta jedna powierzchnia jest. Nic innego w systemie nie jest i tego określenia nie należy stosować do E-OS jako całości."
+        },
+        {
+          "q": "Czy root może wszystko?",
+          "a": "Nie z konstrukcji. Dostęp zależy od zestawu zdolności schematów jądra, a nie od identyfikatora użytkownika — co zmierzono, obserwując, jak sudo i root padają identycznie na zabronionym schemacie."
+        },
+        {
+          "q": "Czy jest program nagród za błędy?",
+          "a": "Nie. Za projektem nie stoi żadne finansowanie."
+        },
+        {
+          "q": "Jak sprawdzić, że obraz, który mam, to obraz, który opublikowaliście?",
+          "a": "SHA256SUMS niesie skróty surowych obrazów, a podpis minisign obejmuje ten plik. Zweryfikuj najpierw podpis, potem skrót wobec surowego obrazu, a nie wobec skompresowanego pobrania."
+        }
+      ]
+    }
+  },
+  "legal": {
+    "header": "Status: {status} · Ostatni przegląd: {reviewed} · Właściciel: {owner}",
+    "status": "obowiązujący",
+    "privacy": {
+      "lede": "Ta strona nie zbiera niczego. Szczegóły poniżej istnieją po to, żebyś nie musiał brać tego na słowo.",
+      "sections": [
+        {
+          "h": "Co ta strona przechowuje",
+          "body": "Jeden wpis w localStorage twojej przeglądarki, o nazwie eos-theme, trzymający napis light albo dark. Nigdy nie opuszcza twojego urządzenia, nigdy nie jest odczytywany przez projekt, a strona działa poprawnie, gdy go nie ma albo gdy magazyn jest całkowicie zablokowany."
+        },
+        {
+          "h": "Czego ta strona nie robi",
+          "body": "Żadnych ciasteczek. Żadnej analityki. Żadnych trackerów, menedżerów tagów ani reklam. Żadnych czcionek, skryptów, arkuszy stylów ani obrazów ładowanych z obcego hosta: wszystko, czego potrzebuje strona, jest serwowane z tego samego źródła co ona."
+        },
+        {
+          "h": "Logi serwera",
+          "body": "Strony serwuje GitLab Pages. Jak każdy serwer WWW, ten host przetwarza twoje żądanie — w tym adres i identyfikator przeglądarki — na zasadach swojego operatora. Projekt nie ma dostępu do tych logów i ich nie otrzymuje."
+        },
+        {
+          "h": "Odsyłacze poza tę stronę",
+          "body": "Odsyłacze do GitLaba, GitHuba i Redox OS wyprowadzają poza tę stronę. Od chwili, gdy któryś otworzysz, obowiązuje polityka prywatności tamtego operatora, a nie ta."
+        },
+        {
+          "h": "Zgłoszenia",
+          "body": "Strona wsparcia składa odsyłacz; niczego nie przesyła. Gdy go otworzysz, jesteś w GitLabie i obowiązują warunki oraz polityka prywatności GitLaba. Zadania tworzone tam są publiczne, łącznie ze wszystkim, co w nie wkleisz."
+        },
+        {
+          "h": "Kontakt i zmiany",
+          "body": "Pytania o tę politykę kieruj na adres opiekuna z polityki bezpieczeństwa. Ta strona niesie datę przeglądu; zmiana istotna przesuwa tę datę i pojawia się w historii repozytorium strony."
+        }
+      ],
+      "securityLink": "Co strona wie — w sekcji bezpieczeństwa",
+      "supportLink": "Wsparcie"
+    },
+    "terms": {
+      "lede": "Oprogramowanie jest na licencji AGPL-3.0-or-later. Ta strona mówi, co to znaczy w praktyce i czego wprost nie obiecuje.",
+      "sections": [
+        {
+          "h": "Licencja",
+          "body": "E-OS jako całość jest na licencji GNU Affero General Public License w wersji 3 albo późniejszej. Istotne części pochodzą z Redox OS i pozostają na licencji MIT, a poszczególne pliki zachowują własne nagłówki tam, gdzie je niosą. AGPL rządzi wkładem własnym E-OS i dystrybucją dzieła połączonego."
+        },
+        {
+          "h": "Brak gwarancji",
+          "body": "Oprogramowanie jest dostarczane bez jakiejkolwiek gwarancji, tak jak mówi licencja. Nie jest to tutaj formalność: nic nie zostało zbootowane na fizycznym sprzęcie, nikt z zewnątrz nie przeprowadził audytu, a utrzymuje je jedna osoba."
+        },
+        {
+          "h": "Czym jest ta strona",
+          "body": "Dokumentacją i informacją o projekcie. Nie jest ofertą, nie jest umową i nie jest umową wsparcia. Cele czasowe cytowane na stronach wsparcia i bezpieczeństwa są deklarowanymi celami jednego opiekuna."
+        },
+        {
+          "h": "Korzystanie z tej strony",
+          "body": "Czytaj ją, cytuj, linkuj; jest publikowana na tej samej licencji co projekt. Jeśli cytujesz stąd pomiar, cytuj razem z datą — te liczby są pomiarami, a pomiary się starzeją."
+        },
+        {
+          "h": "Rzetelność",
+          "body": "Strony mówią, co zmierzono i kiedy. Tam, gdzie czegoś nie zweryfikowano, strona to napisze, zamiast pominąć. Jeśli znajdziesz tutaj twierdzenie, które nie jest prawdziwe, to jest usterka, a zgłoszenie jest właściwą na nią odpowiedzią."
+        },
+        {
+          "h": "Jurysdykcja i odpowiedzialność",
+          "body": "Za E-OS nie stoi podmiot prawny i nie wskazuje się jurysdykcji. Ograniczenie odpowiedzialności jest tym z AGPL, a nic na tej stronie niczego do niego nie dodaje ani z niego nie odejmuje."
+        }
+      ],
+      "licenseLink": "Tekst licencji",
+      "noticeLink": "Plik NOTICE"
+    },
+    "trademarks": {
+      "lede": "Redox OS jest cudzym znakiem towarowym. E-OS jest dystrybucją pochodną, nie jest oficjalnym oprogramowaniem Redox OS, a ta strona mówi tę różnicę precyzyjnie.",
+      "sections": [
+        {
+          "h": "Znak towarowy Redox OS",
+          "body": "Znak towarowy Redox OS — nazwa, logo i związane oznaczenia — należy do fundacji Redox OS i podlega jej polityce znaku towarowego, obowiązującej od 3 grudnia 2025. E-OS stosuje się do tej polityki, a tam, gdzie ta strona i tamta polityka się różnią, rozstrzyga tamta polityka."
+        },
+        {
+          "h": "Jak E-OS odnosi się do Redox OS",
+          "body": "Opisowo, żeby powiedzieć, na czym E-OS jest zbudowany. E-OS jest oprogramowaniem osób trzecich dla systemu operacyjnego Redox OS. Nie używa nazwy ani logo Redox OS w sposób sugerujący status oficjalny, poparcie czy sponsoring, nie modyfikuje logo i nie wplata go we własne oznaczenie."
+        },
+        {
+          "h": "Przestrzenie nazw, których E-OS nie używa",
+          "body": "Oficjalne oprogramowanie Redox OS może używać przestrzeni pakietów redox-os- oraz prefiksu odwróconego DNS org.redox_os. E-OS nie jest oficjalnym oprogramowaniem Redox OS i nie używa żadnego z nich."
+        },
+        {
+          "h": "Nazwa E-OS",
+          "body": "E-OS oraz nazewnictwo pulpitu Crimson są własne dla projektu. Plik NOTICE je zastrzega; nie ma zarejestrowanego znaku ani podmiotu prawnego, który mógłby go trzymać. Używaj nazwy, żeby odnieść się do tego projektu, i nie używaj jej w sposób sugerujący, że fork albo przebudowa to to samo oprogramowanie."
+        },
+        {
+          "h": "Nazwy osób trzecich",
+          "body": "Aplikacje i motywy ikon COSMIC należą do System76. NetSurf należy do jego twórców. Rust i Cargo należą do Rust Foundation. Wymienienie ich tutaj jest użyciem opisowym i nie implikuje poparcia w żadną stronę."
+        }
+      ],
+      "rules": {
+        "h2": "Co wolno, a czego nie wolno",
+        "intro": "Streszczone z polityki upstreamu i z tego, jak E-OS ją czyta. Pełny tekst jest podlinkowany niżej i ma pierwszeństwo przed tym streszczeniem.",
+        "items": [
+          "Wolno ci powiedzieć, że twój projekt działa na E-OS, rozszerza go albo z niego pochodzi, i że E-OS jest dystrybucją pochodną Redox OS.",
+          "Wolno ci powielać tę dokumentację na licencji projektu, razem z nazwami w niej zawartymi.",
+          "Nie wolno ci sugerować, że fundacja Redox OS popiera E-OS ani że E-OS jest oficjalnym oprogramowaniem Redox OS. Nie jest ani jednym, ani drugim.",
+          "Nie wolno ci używać logo Redox OS zmodyfikowanego ani jako części innego oznaczenia bez pisemnej zgody fundacji Redox OS.",
+          "Nie wolno ci używać znaku towarowego Redox OS na towarach w celach komercyjnych bez ich zgody.",
+          "Jeśli zrobisz fork E-OS i go zmienisz, nie przedstawiaj wyniku jako E-OS. Zmień nazwę, tak jak przy każdej dystrybucji."
+        ]
+      },
+      "contact": {
+        "h2": "Kogo pytać",
+        "body": "Pytania o znak towarowy Redox OS kieruj do fundacji Redox OS, nie do tego projektu. Pytania o nazwę E-OS kieruj do opiekuna.",
+        "policy": "Polityka znaku towarowego upstreamu",
+        "redox": "trademark@redox-os.org",
+        "notice": "Plik NOTICE wraz z oświadczeniem o pochodzeniu"
+      }
+    },
+    "aboutEos": {
+      "lede": "Kto publikuje tę stronę, na jakiej licencji i czym jest E-OS w relacji do Redox OS.",
+      "sections": [
+        {
+          "h": "Wydawca",
+          "body": "E-OS jest niezależnym projektem otwartoźródłowym utrzymywanym przez jedną osobę. Nie ma firmy, podmiotu prawnego, adresu rejestrowego ani finansowania. Wiersz praw autorskich brzmi „Damian (Gh0s777tt) i współtwórcy E-OS”."
+        },
+        {
+          "h": "Pochodzenie",
+          "body": "E-OS jest dystrybucją pochodną wywiedzioną z Redox OS — systemu operacyjnego z mikrojądrem w Ruście, stworzonego przez Jeremy'ego Sollera i społeczność Redox OS. Jądro, relibc, RedoxFS, warstwa sterowników i system budowania cookbook stamtąd pochodzą i pozostają na licencji MIT."
+        },
+        {
+          "h": "Relacja z Redox OS",
+          "body": "Formalnie żadna. E-OS nie ma poparcia projektu Redox OS, nie jest z nim powiązany i nie jest jego produktem. Śledzi upstream przez przypięte rewizje i niesie swoje łatki w forkach utrzymywanych w stanie zdatnym do rebase'u, żeby relacja pozostała techniczna."
+        },
+        {
+          "h": "Ta strona",
+          "body": "Statyczne strony generowane z własnych dokumentów projektu i z konfiguracji budowania, hostowane na GitLab Pages. Ich źródło to osobne repozytorium na tej samej licencji co projekt."
+        },
+        {
+          "h": "Kontakt",
+          "body": "Adres opiekuna z polityki bezpieczeństwa jest kontaktem do wszystkiego: zgłoszeń bezpieczeństwa, pytań prawnych i prasy. Nie ma innego kanału ani biura prasowego."
+        }
+      ],
+      "identity": {
+        "h2": "W skrócie",
+        "caption": "Tożsamość projektu",
+        "rows": [
+          {
+            "field": "Projekt",
+            "value": "E-OS"
+          },
+          {
+            "field": "Czym jest",
+            "value": "Dystrybucją pochodną Redox OS"
+          },
+          {
+            "field": "Licencja",
+            "value": "AGPL-3.0-or-later; części z upstreamu MIT"
+          },
+          {
+            "field": "Opiekunowie",
+            "value": "Jeden"
+          },
+          {
+            "field": "Podmiot prawny",
+            "value": "Brak"
+          },
+          {
+            "field": "Źródło prawdy",
+            "value": "gitlab.com/e-os"
+          },
+          {
+            "field": "Lustro",
+            "value": "github.com/Gh0s777tt, tylko do odczytu"
+          },
+          {
+            "field": "Kontakt",
+            "value": "adres opiekuna z polityki bezpieczeństwa"
+          }
+        ]
+      },
+      "licenseLink": "Licencja",
+      "trademarkLink": "Znaki towarowe",
+      "aboutLink": "O projekcie"
+    }
+  },
+  "root": {
+    "chooseLanguage": "Wybierz język. Ta strona istnieje dlatego, że host statyczny nie potrafi go za ciebie wynegocjować."
+  }
+}

@@ -1,0 +1,41 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import PageHead from '../../../../components/PageHead.astro';
+import LegalDoc from '../../../../components/LegalDoc.astro';
+import { useTranslations, useList, LOCALES, type Locale } from '../../../../i18n';
+import { links } from '../../../../../site.config.mjs';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const list = useList(lang);
+---
+<Base lang={lang} route="legalTrademarks">
+  <PageHead
+    eyebrow={t('page.legalTrademarks.eyebrow')}
+    title={t('page.legalTrademarks.title')}
+    lede={t('legal.trademarks.lede')}
+  />
+  <LegalDoc lang={lang} docKey="trademarks" reviewed="2026-09-03" />
+
+  <section aria-labelledby="tm-rules">
+    <h2 id="tm-rules">{t('legal.trademarks.rules.h2')}</h2>
+    <p>{t('legal.trademarks.rules.intro')}</p>
+    <ul>
+      {list('legal.trademarks.rules.items').map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section aria-labelledby="tm-contact">
+    <h2 id="tm-contact">{t('legal.trademarks.contact.h2')}</h2>
+    <p>{t('legal.trademarks.contact.body')}</p>
+    <ul class="list-plain">
+      <li><a href={links.trademark} rel="noopener noreferrer">{t('legal.trademarks.contact.policy')}</a></li>
+      <li><a href={links.redoxTrademarkContact}>{t('legal.trademarks.contact.redox')}</a></li>
+      <li><a href={links.notice} rel="noopener noreferrer">{t('legal.trademarks.contact.notice')}</a></li>
+    </ul>
+  </section>
+</Base>

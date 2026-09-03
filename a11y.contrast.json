@@ -1,0 +1,19 @@
+{
+  "$comment": "Pairs measured by scripts/check-contrast.mjs against src/styles/tokens.css, in both themes. 'min' is the ratio the accessibility statement claims; the statement is only allowed to say what this file gates.",
+  "pairs": [
+    { "fg": "text", "bg": "ink", "min": 7, "where": "body text on the page background" },
+    { "fg": "text", "bg": "panel", "min": 7, "where": "body text inside a panel" },
+    { "fg": "text", "bg": "panel-raised", "min": 7, "where": "body text inside a raised panel" },
+    { "fg": "muted", "bg": "ink", "min": 4.5, "where": "secondary text on the page background" },
+    { "fg": "muted", "bg": "panel", "min": 4.5, "where": "secondary text inside a panel" },
+    { "fg": "muted", "bg": "panel-raised", "min": 4.5, "where": "secondary text inside a raised panel" },
+    { "fg": "accent-text", "bg": "ink", "min": 4.5, "where": "links at body size" },
+    { "fg": "accent-text", "bg": "panel", "min": 4.5, "where": "links inside a panel" },
+    { "fg": "accent-text", "bg": "panel-raised", "min": 4.5, "where": "links inside a raised panel" },
+    { "fg": "accent", "bg": "ink", "min": 3, "where": "rules, borders, focus ring and display type only -- never body text" },
+    { "fg": "accent", "bg": "panel", "min": 3, "where": "rules and borders inside a panel" },
+    { "fg": "focus", "bg": "ink", "min": 3, "where": "focus outline against the page" },
+    { "fg": "focus", "bg": "panel", "min": 3, "where": "focus outline against a panel" },
+    { "fg": "line", "bg": "ink", "min": 1.3, "where": "hairline separators -- decorative, low bar on purpose" }
+  ]
+}

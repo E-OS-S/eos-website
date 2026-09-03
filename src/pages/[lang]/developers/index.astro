@@ -1,0 +1,103 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import { useTranslations, useList, useEntries, LOCALES, localePath, type Locale } from '../../../i18n';
+import { links } from '../../../../site.config.mjs';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const list = useList(lang);
+const entries = useEntries(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+
+const documents = [
+  { key: 'roadmap', url: links.roadmap },
+  { key: 'claude', url: links.claudeMd },
+  { key: 'architecture', url: links.architecture },
+  { key: 'contributing', url: links.contributing },
+  { key: 'security', url: links.security },
+  { key: 'changelog', url: links.changelog },
+  { key: 'hardware', url: links.hardware },
+  { key: 'docs', url: links.docs },
+];
+// i18n-dynamic: developers.doc.
+---
+<Base lang={lang} route="developers">
+  <PageHead eyebrow={t('page.developers.eyebrow')} title={t('page.developers.title')} lede={t('developers.lede')} />
+
+  <section aria-labelledby="documents">
+    <h2 id="documents">{t('developers.documents.h2')}</h2>
+    <p>{t('developers.documents.intro')}</p>
+    <dl class="faq">
+      {documents.map((doc) => (
+        <>
+          <dt><a href={doc.url} rel="noopener noreferrer">{t(`developers.doc.${doc.key}.title`)}</a></dt>
+          <dd>{t(`developers.doc.${doc.key}.body`)}</dd>
+        </>
+      ))}
+    </dl>
+  </section>
+
+  <section aria-labelledby="build">
+    <h2 id="build">{t('developers.build.h2')}</h2>
+    <p>{t('developers.build.intro')}</p>
+    <pre><code data-i18n-literal>bash scripts/eos-build.sh x86_64
+bash scripts/ci-boot-smoke.sh ~/eos-artifacts/eos-x86_64-harddrive.img 300 --arch x86_64
+bash scripts/verify.sh</code></pre>
+    <p>{t('developers.build.note')}</p>
+  </section>
+
+  <section aria-labelledby="gates">
+    <h2 id="gates">{t('developers.gates.h2')}</h2>
+    <p>{t('developers.gates.intro')}</p>
+    <div class="table-scroll">
+      <table>
+        <caption>{t('developers.gates.caption')}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{t('developers.gates.col.gate')}</th>
+            <th scope="col">{t('developers.gates.col.state')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries('developers.gates.rows').map((row) => (
+            <tr>
+              <th scope="row" data-i18n-literal>{row.gate}</th>
+              <td>{row.state}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p>{t('developers.gates.ci')}</p>
+  </section>
+
+  <section aria-labelledby="contribute">
+    <h2 id="contribute">{t('developers.contribute.h2')}</h2>
+    <p>{t('developers.contribute.intro')}</p>
+    <ul>
+      {list('developers.contribute.rules').map((rule) => <li>{rule}</li>)}
+    </ul>
+    <p>
+      <a href={links.issues} rel="noopener noreferrer">{t('developers.contribute.issues')}</a>
+      <span aria-hidden="true"> · </span>
+      <a href={href('support')}>{t('developers.contribute.support')}</a>
+    </p>
+  </section>
+
+  <section aria-labelledby="site">
+    <h2 id="site">{t('developers.site.h2')}</h2>
+    <p>{t('developers.site.intro')}</p>
+    <pre><code data-i18n-literal>npm ci
+npm run check:i18n
+npm run check:changelog
+npm run check:contrast
+npm run build</code></pre>
+    <p>{t('developers.site.note')}</p>
+  </section>
+</Base>

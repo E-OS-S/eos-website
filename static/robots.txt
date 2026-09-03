@@ -1,0 +1,6 @@
+# eos-website
+# Nothing here is private; the site is documentation.
+User-agent: *
+Allow: /
+
+Sitemap: https://e-os.gitlab.io/eos-website/sitemap.xml

@@ -1,0 +1,160 @@
+---
+/**
+ * Base layout: landmarks, locale metadata, theme bootstrap.
+ *
+ * Landmarks are real elements (header/nav/main/footer) with accessible names,
+ * because a screen-reader user navigates by them. The skip link is the first
+ * focusable thing on every page.
+ */
+import { useTranslations, LOCALE_TAGS, LOCALES, LOCALE_NAMES, localePath, type Locale } from '../i18n';
+import { ROUTES, FOOTER_GROUPS } from '../lib/routes.mjs';
+import { links } from '../../site.config.mjs';
+import '../styles/global.css';
+
+interface Props {
+  lang: Locale;
+  route: string;
+  title?: string;
+  description?: string;
+}
+
+// i18n-dynamic: page.
+// i18n-dynamic: nav.
+// i18n-dynamic: footer.group.
+// Addressed as page.<route>.title / .description / .eyebrow, nav.<route> and
+// footer.group.<group>, all built from the route table in src/lib/routes.mjs.
+const { lang, route, title, description } = Astro.props;
+const t = useTranslations(lang);
+
+const here = ROUTES.find((r) => r.key === route);
+if (!here) throw new Error(`Base layout: unknown route key "${route}"`);
+
+const docTitle = title ?? t(`page.${route}.title`);
+const docDescription = description ?? t(`page.${route}.description`);
+const fullTitle = route === 'home' ? `${t('brand.name')} — ${t('brand.tagline')}` : `${docTitle} — ${t('brand.name')}`;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (l: Locale, path: string) => `${base}${localePath(l, path)}`;
+
+const navRoutes = ROUTES.filter((r) => r.nav);
+const year = new Date().getUTCFullYear();
+---
+
+<html lang={LOCALE_TAGS[lang]} data-theme-default="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={docDescription} />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href={new URL(href(lang, here.path), Astro.site).href} />
+    {LOCALES.map((l) => (
+      <link rel="alternate" hreflang={LOCALE_TAGS[l]} href={new URL(href(l, here.path), Astro.site).href} />
+    ))}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={docDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={LOCALE_TAGS[lang].replace('-', '_')} />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0202'/%3E%3Cpath d='M9 8h14v4H13v4h8v4h-8v4h10v4H9z' fill='%23e50914'/%3E%3C/svg%3E"
+    />
+    <script is:inline>
+      // Theme bootstrap: runs before first paint so a stored preference does not
+      // flash. Wrapped because a browser with site data blocked throws on read.
+      try {
+        var stored = localStorage.getItem('eos-theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
+      } catch (e) { /* no stored preference is a valid state */ }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t('a11y.skipToContent')}</a>
+
+    <header class="masthead">
+      <div class="page masthead-inner">
+        <a class="wordmark" href={href(lang, '')}>
+          <span class="mark" data-i18n-literal>E&#8209;OS</span>
+          <span class="sub">{t('brand.sub')}</span>
+        </a>
+
+        <nav class="nav" aria-label={t('a11y.primaryNav')}>
+          {navRoutes.map((r) => (
+            <a
+              href={href(lang, r.path)}
+              aria-current={r.key === route ? 'page' : undefined}
+            >{t(`nav.${r.key}`)}</a>
+          ))}
+        </nav>
+
+        <div class="utility">
+          <nav class="locale-switcher" aria-label={t('a11y.localeNav')}>
+            {LOCALES.map((l) => (
+              <a
+                href={href(l, here.path)}
+                lang={LOCALE_TAGS[l]}
+                hreflang={LOCALE_TAGS[l]}
+                aria-current={l === lang ? 'true' : undefined}
+                aria-label={LOCALE_NAMES[l]}
+              >{l}</a>
+            ))}
+          </nav>
+          <button class="theme-toggle" type="button" data-theme-toggle title={t('theme.hint')}>
+            {t('theme.toggle')}
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="page" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="page">
+        <div class="footer-grid">
+          {FOOTER_GROUPS.map((group) => (
+            <nav aria-labelledby={`footer-${group}`}>
+              <h2 id={`footer-${group}`}>{t(`footer.group.${group}`)}</h2>
+              <ul>
+                {ROUTES.filter((r) => r.footer === group).map((r) => (
+                  <li><a href={href(lang, r.path)}>{t(`nav.${r.key}`)}</a></li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+          <nav aria-labelledby="footer-source">
+            <h2 id="footer-source">{t('footer.group.source')}</h2>
+            <ul>
+              <li><a href={links.gitlab} rel="noopener noreferrer">{t('footer.link.gitlab')}</a></li>
+              <li><a href={links.github} rel="noopener noreferrer">{t('footer.link.github')}</a></li>
+              <li><a href={links.roadmap} rel="noopener noreferrer">{t('footer.link.roadmap')}</a></li>
+              <li><a href={links.redox} rel="noopener noreferrer">{t('footer.link.redox')}</a></li>
+            </ul>
+          </nav>
+        </div>
+        <p class="footer-note">{t('footer.copyright', { year })}</p>
+        <p class="footer-note">{t('footer.trademark')}</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        button.addEventListener('click', function () {
+          var root = document.documentElement;
+          var current = root.getAttribute('data-theme');
+          if (!current) {
+            current = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          }
+          var next = current === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          try { localStorage.setItem('eos-theme', next); } catch (e) { /* not persisting is acceptable */ }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import { useTranslations, useList, LOCALES, localePath, type Locale } from '../../../i18n';
+import { links } from '../../../../site.config.mjs';
+import data from '../../../data/products.json';
+
+// i18n-dynamic: products.item.
+// i18n-dynamic: products.caveat.
+// The two prefixes above are addressed as products.item.<id>.* and
+// products.caveat.<id>, built from src/data/products.json at build time.
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const t = useTranslations(lang);
+const list = useList(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path: string) => `${base}${localePath(lang, path)}`;
+
+const shipped = data.products.filter((p) => p.status === 'shipped');
+const planned = data.products.filter((p) => p.status === 'planned');
+const webUrl = (git: string | null | undefined) => (git ? git.replace(/\.git$/, '') : null);
+---
+<Base lang={lang} route="products">
+  <PageHead
+    eyebrow={t('page.products.eyebrow')}
+    title={t('page.products.title')}
+    lede={t('products.lede')}
+  />
+
+  <div class="callout">
+    <h3>{t('products.generated.h3')}</h3>
+    <p>{t('products.generated.body')}</p>
+    <p class="meta">{t('products.generated.sources', { files: data.generatedFrom.files.join(', ') })}</p>
+  </div>
+
+  <section aria-labelledby="shipped">
+    <h2 id="shipped">{t('products.shipped.h2')}</h2>
+    <p>{t('products.shipped.intro')}</p>
+
+    {shipped.map((p) => (
+      <article class="card" style="margin-bottom:1.25rem">
+        <h3>
+          <span data-i18n-literal>{p.name}</span>
+          <span class="badge badge-shipped">{t('products.status.shipped')}</span>
+        </h3>
+        <p>{t(`products.item.${p.id}.summary`)}</p>
+        <p>{t(`products.item.${p.id}.detail`)}</p>
+
+        {p.caveats.length > 0 && (
+          <ul class="list-plain">
+            {p.caveats.map((c) => <li>{t(`products.caveat.${c}`)}</li>)}
+          </ul>
+        )}
+
+        <dl class="meta">
+          <dt>{t('products.field.package')}</dt>
+          <dd data-i18n-literal>{p.package ?? '—'}</dd>
+          {p.repository && (
+            <>
+              <dt>{t('products.field.repository')}</dt>
+              <dd>
+                <a href={webUrl(p.repository.gitlab)} rel="noopener noreferrer" data-i18n-literal>{p.repository.name}</a>
+                <span aria-hidden="true"> · </span>
+                <span>{t('products.field.type', { type: p.repository.type })}</span>
+              </dd>
+              <dt>{t('products.field.pin')}</dt>
+              <dd data-i18n-literal>{p.repository.pinnedBranch} @ {p.repository.pinnedRev}</dd>
+              <dt>{t('products.field.recipe')}</dt>
+              <dd data-i18n-literal>{p.repository.recipe ?? '—'}</dd>
+            </>
+          )}
+          {p.roadmap.length > 0 && (
+            <>
+              <dt>{t('products.field.roadmap')}</dt>
+              <dd data-i18n-literal>{p.roadmap.join(', ')}</dd>
+            </>
+          )}
+        </dl>
+      </article>
+    ))}
+  </section>
+
+  <section aria-labelledby="planned">
+    <h2 id="planned">{t('products.planned.h2')}</h2>
+    <p>{t('products.planned.intro')}</p>
+
+    <div class="grid">
+      {planned.map((p) => (
+        <article class="card">
+          <h3>
+            <span data-i18n-literal>{p.name}</span>
+            <span class="badge badge-planned">{t('products.status.planned')}</span>
+          </h3>
+          <p>{t(`products.item.${p.id}.summary`)}</p>
+          <p>{t(`products.item.${p.id}.detail`)}</p>
+          <dl class="meta">
+            <dt>{t('products.field.roadmap')}</dt>
+            <dd data-i18n-literal>{p.roadmap.join(', ')}</dd>
+            <dt>{t('products.field.state')}</dt>
+            <dd>{t('products.planned.state')}</dd>
+          </dl>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="notproducts">
+    <h2 id="notproducts">{t('products.absent.h2')}</h2>
+    <p>{t('products.absent.intro')}</p>
+    <ul>
+      {list('products.absent.items').map((item) => <li>{item}</li>)}
+    </ul>
+    <p><a href={links.roadmap} rel="noopener noreferrer">{t('products.absent.link')}</a></p>
+  </section>
+
+  <p><a href={href('downloads')}>{t('products.downloadsLink')}</a></p>
+</Base>

@@ -1,0 +1,49 @@
+---
+/**
+ * The root document: a language chooser.
+ *
+ * A static host cannot negotiate Accept-Language, so this page does not
+ * pretend to. It sends a browser on to the default locale with a meta refresh
+ * and, for anyone the refresh does not reach, offers both locales as ordinary
+ * links, each labelled in its own language.
+ *
+ * It carries no site chrome on purpose: its whole body is the main region, so
+ * a skip link would skip nothing and a footer of legal links on a redirect
+ * stub is not content. scripts/check-built.mjs exempts this one document from
+ * those two rules by name, and enforces the rest of them here as everywhere.
+ */
+import { LOCALES, LOCALE_NAMES, LOCALE_TAGS, DEFAULT_LOCALE, useTranslations, localePath } from '../i18n';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const target = `${base}${localePath(DEFAULT_LOCALE)}`;
+const t = useTranslations(DEFAULT_LOCALE);
+---
+<html lang={LOCALE_TAGS[DEFAULT_LOCALE]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <title>{t('brand.name')}</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={new URL(target, Astro.site).href} />
+  </head>
+  <body>
+    <main id="main" class="page" style="padding-block:4rem">
+      <p class="eyebrow">{t('brand.name')}</p>
+      <h1>{t('brand.tagline')}</h1>
+      <p class="lede">{t('root.chooseLanguage')}</p>
+      <nav aria-label={t('a11y.localeNav')}>
+        <ul class="list-plain">
+          {LOCALES.map((l) => (
+            <li>
+              <a class="button button-quiet" href={`${base}${localePath(l)}`} lang={LOCALE_TAGS[l]} hreflang={LOCALE_TAGS[l]}>
+                {LOCALE_NAMES[l]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>

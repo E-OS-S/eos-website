@@ -1,0 +1,14 @@
+---
+/** The heading block every page opens with: eyebrow, h1, lede. */
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede?: string;
+}
+const { eyebrow, title, lede } = Astro.props;
+---
+<div class="page-head">
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  {lede && <p class="lede">{lede}</p>}
+</div>
